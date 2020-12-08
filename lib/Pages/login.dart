@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
+
+LData data1 = LData();
 
 class login extends StatefulWidget {
   @override
@@ -8,8 +11,6 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-
-  LData data1 = LData();
 
   Widget Input(String symbol, String hint){
     return Container(

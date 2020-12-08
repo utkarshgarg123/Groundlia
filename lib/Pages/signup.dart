@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 
+SData data2 = SData();
+
 class signup extends StatefulWidget {
   @override
   _signupState createState() => _signupState();
 }
 
 class _signupState extends State<signup> {
-
-  SData data2 = SData();
 
   Widget Input(String symbol, String hint){
     return Container(

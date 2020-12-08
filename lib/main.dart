@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
+import 'package:groundlia/Pages/signup.dart';
 import 'Pages/login.dart';
 
 void main(){
@@ -13,6 +14,7 @@ void main(){
 var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
+  "/signup" : (BuildContext context) => signup(),
 };
 
 class StartTheApp extends StatefulWidget {

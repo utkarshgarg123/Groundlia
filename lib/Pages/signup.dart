@@ -87,42 +87,21 @@ class _signupState extends State<signup> {
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          child: Container(
-                            height: 45.0,
-                            width: 70.0,
-                            margin: EdgeInsets.only(top: 20.0),
-                            decoration: BoxDecoration(
-                                color: Colors.lightGreen[300],
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                            child: Center(child: Text("Done", style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "mainfont",
-                            ),),),
-                          ),
+                    GestureDetector(
+                      child: Container(
+                        height: 45.0,
+                        width: 150.0,
+                        margin: EdgeInsets.only(top: 20.0),
+                        decoration: BoxDecoration(
+                            color: Colors.lightGreen[300],
+                            borderRadius: BorderRadius.all(Radius.circular(10))
                         ),
-                        GestureDetector(
-                          child: Container(
-                            height: 45.0,
-                            width: MediaQuery.of(context).size.width - 140,
-                            margin: EdgeInsets.only(top: 20.0),
-                            decoration: BoxDecoration(
-                                color: Colors.lightGreen[300],
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                            child: Center(child: Text("Signup for Organizer", style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "mainfont",
-                            ),),),
-                          ),
-                        ),
-                      ],
+                        child: Center(child: Text("Start the Event", style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "mainfont",
+                        ),),),
+                      ),
                     )
                   ],
                 ),

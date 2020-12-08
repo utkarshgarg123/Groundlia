@@ -67,6 +67,10 @@ class _signupState extends State<signup> {
                 Input("mail", "Enter Email"),
                 Input("location", "Enter location"),
                 GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pop(true);
+                    Navigator.pushNamed(context, "/startevent");
+                  },
                   child: Container(
                     height: 45.0,
                     width: 150.0,

@@ -68,7 +68,10 @@ class _loginState extends State<login> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).pop(true);
+                            Navigator.pushNamed(context, "/signup");
+                          },
                           child: Container(
                             height: 45.0,
                             width: 70.0,

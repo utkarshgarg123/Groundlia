@@ -50,6 +50,7 @@ flutter:
     - Assets/Images/appicon/Icon.png
     - Assets/Images/loginSignup/key.png
     - Assets/Images/loginSignup/user.png
+    - Assets/Images/loginSignup/
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

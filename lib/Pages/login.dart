@@ -13,6 +13,7 @@ class _loginState extends State<login> {
     return WillPopScope(
         child: SafeArea(
             child: Scaffold(
+//              resizeToAvoidBottomInset: false,
               body: Container(
                 width: MediaQuery.of(context).size.width,
                 color: Colors.grey[900],
@@ -110,7 +111,6 @@ class _loginState extends State<login> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            Navigator.of(context).pop(true);
                             Navigator.pushNamed(context, "/signup");
                           },
                           child: Container(

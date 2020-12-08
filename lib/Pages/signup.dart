@@ -74,7 +74,7 @@ class _signupState extends State<signup> {
                     download dn = download();
                     getCodes codes = getCodes();
 
-                    codes = await dn.GetAllCodes();
+                    codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
                       Navigator.of(context).pop(true);

@@ -74,7 +74,7 @@ class _loginState extends State<login> {
                           onTap: () async {
 
                             upload up = upload();
-                            data1.Authorisation = await up.IsAuthorized();
+                            data1.Authorisation = await up.IsAuthorized(data1.code);
 
                             if
                             (data1.Authorisation == "watcher" ||

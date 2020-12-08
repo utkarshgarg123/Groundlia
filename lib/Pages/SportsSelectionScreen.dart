@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/util/widget.dart';
 
 class SelectSport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      onWillPop: onWillPop,
       child: SafeArea(
         child: Scaffold(
           body: Container(
@@ -42,8 +44,7 @@ class SelectSport extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.sports_cricket,
-                            size: 45,
+                            Icons.add,
                             color: Colors.white,
                           ),
                           Text('     Cricket',
@@ -68,7 +69,8 @@ class SelectSport extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.sports_soccer_outlined,
+                            Icons.favorite,
+//                            Icons.sports_soccer_outlined,
                             size: 45,
                             color: Colors.white,
                           ),
@@ -94,7 +96,8 @@ class SelectSport extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.sports_tennis_outlined,
+                            Icons.add,
+//                            Icons.sports_tennis_outlined,
                             size: 45,
                             color: Colors.white,
                           ),

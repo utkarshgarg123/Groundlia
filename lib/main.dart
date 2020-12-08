@@ -6,6 +6,10 @@ import 'package:groundlia/Pages/done.dart';
 import 'package:groundlia/Pages/login.dart';
 import 'package:groundlia/Pages/signup.dart';
 import 'package:groundlia/Pages/startevent.dart';
+import 'package:groundlia/Pages/watcher/watchbadminton.dart';
+import 'package:groundlia/Pages/watcher/watchbasketball.dart';
+import 'package:groundlia/Pages/watcher/watchcricket.dart';
+import 'package:groundlia/Pages/watcher/watchwhich.dart';
 
 void main(){
   runApp(MaterialApp(
@@ -21,8 +25,12 @@ var routes = <String,WidgetBuilder>{
   "/signup" : (BuildContext context) => signup(),
   "/done" : (BuildContext context) => Done(data1),
   "/startevent" : (BuildContext context) => Startevent(data2),
-  "/play" : (BuildContext context) => PlayCricket(),
-  "/here" : (BuildContext context) => SelectSport(),
+  "/playCricket" : (BuildContext context) => PlayCricket(),
+  "/selectsport" : (BuildContext context) => SelectSport(),
+  "/watchwhich" : (BuildContext context) => watchwhich(),
+  "/watchcricket" : (BuildContext context) => watchcricket(data1),
+  "/watchbasketball" : (BuildContext context) => watchbasketball(data1),
+  "/watchbadminton" : (BuildContext context) => watchbadminton(data1),
 };
 
 class StartTheApp extends StatefulWidget {

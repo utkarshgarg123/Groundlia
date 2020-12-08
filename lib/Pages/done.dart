@@ -13,8 +13,10 @@ class _DoneState extends State<Done> {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(widget.data.name),
+    return Scaffold(
+      body: Container(
+        child: Text(widget.data.name),
+      ),
     );
   }
 }

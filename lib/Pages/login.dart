@@ -70,7 +70,7 @@ class _loginState extends State<login> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop(true);
-                            Navigator.pushNamed(context, "/signup");
+                            Navigator.pushNamed(context, "/done");
                           },
                           child: Container(
                             height: 45.0,

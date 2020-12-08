@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/PlayCricket.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
+import 'package:groundlia/Pages/SportsSelectionScreen.dart';
+import 'package:groundlia/Pages/done.dart';
+import 'package:groundlia/Pages/login.dart';
 import 'package:groundlia/Pages/signup.dart';
-import 'Pages/login.dart';
+import 'package:groundlia/Pages/startevent.dart';
 
 void main(){
   runApp(MaterialApp(
@@ -15,6 +19,10 @@ var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
   "/signup" : (BuildContext context) => signup(),
+  "/done" : (BuildContext context) => Done(data1),
+  "/startevent" : (BuildContext context) => Startevent(data2),
+  "/play" : (BuildContext context) => PlayCricket(),
+  "/here" : (BuildContext context) => SelectSport(),
 };
 
 class StartTheApp extends StatefulWidget {

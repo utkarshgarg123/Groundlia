@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/signup.dart';
+import 'package:groundlia/Pages/Api/upload.dart';
+import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+LData data1 = LData();
 
 class login extends StatefulWidget {
   @override
@@ -8,6 +12,43 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+  Widget Input(String symbol, String hint){
+    return Container(
+      margin: EdgeInsets.only(top: 30.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+      ),
+      width: MediaQuery.of(context).size.width - 100,
+      height: 50.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(100.0)),
+            child: Image.asset("Assets/Images/loginSignup/$symbol.png", height: 40.0,),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width - 200,
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: hint,
+              ),
+              onChanged: (val){
+                setState(() {
+                  if(symbol == "user")data1.name = val;
+                  else data1.code = val;
+                });
+              },
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -24,75 +65,32 @@ class _loginState extends State<login> {
                       borderRadius: BorderRadius.all(Radius.circular(100.0)),
                       child: Image.asset("Assets/Images/appicon/Icon.png", height: 100.0,),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0),
-                      width: MediaQuery.of(context).size.width - 100,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                            child: Image.asset("Assets/Images/loginSignup/user.png", height: 40.0,),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 200,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Enter Name",
-                              ),
-                              onChanged: (val){
-                                setState(() {
-
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      width: MediaQuery.of(context).size.width - 100,
-                      height: 50.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                            child: Image.asset("Assets/Images/loginSignup/key.png", height: 40.0,),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 200,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Access Code",
-                              ),
-                              onChanged: (val){
-                                setState(() {
-
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    Input("user", "Enter Name"),
+                    Input("key", "Access code"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () async {
+
+                            upload up = upload();
+                            data1.Authorisation = await up.IsAuthorized();
+
+                            if
+                            (data1.Authorisation == "watcher" ||
+                                data1.Authorisation == "organizer" ||
+                                data1.Authorisation == "volunteer"
+                            ){
+                            Navigator.of(context).pop(true);
+                            Navigator.pushNamed(context, "/done");
+                            }
+                            else {
+                                  Fluttertoast.showToast(
+                                  msg: "Error in login Try Again",
+                                  backgroundColor: Colors.black,
+                                  textColor: Colors.white);
+                            }
+                          },
                           child: Container(
                             height: 45.0,
                             width: 70.0,
@@ -110,7 +108,6 @@ class _loginState extends State<login> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            Navigator.of(context).pop(true);
                             Navigator.pushNamed(context, "/signup");
                           },
                           child: Container(

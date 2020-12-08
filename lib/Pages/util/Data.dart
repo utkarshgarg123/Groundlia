@@ -9,3 +9,9 @@ class SData{
   String mail = "";
   String location = "";
 }
+
+class getCodes{
+  String WatcherCode = "";
+  String VolunteerCode = "";
+  String OrganizerCode = "";
+}

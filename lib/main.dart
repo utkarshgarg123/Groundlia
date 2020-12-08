@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/PlayCricket.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
+import 'package:groundlia/Pages/SportsSelectionScreen.dart';
 import 'package:groundlia/Pages/done.dart';
 import 'package:groundlia/Pages/login.dart';
 import 'package:groundlia/Pages/signup.dart';
@@ -20,6 +21,8 @@ var routes = <String,WidgetBuilder>{
   "/signup" : (BuildContext context) => signup(),
   "/done" : (BuildContext context) => Done(data1),
   "/startevent" : (BuildContext context) => Startevent(data2),
+  "/play" : (BuildContext context) => PlayCricket(),
+  "/here" : (BuildContext context) => SelectSport(),
 };
 
 class StartTheApp extends StatefulWidget {

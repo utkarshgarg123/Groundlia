@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 LData data1 = LData();
 
@@ -70,9 +71,25 @@ class _loginState extends State<login> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+
+                            upload up = upload();
+                            data1.Authorisation = await up.IsAuthorized();
+
+                            if
+                            (data1.Authorisation == "watcher" ||
+                                data1.Authorisation == "organizer" ||
+                                data1.Authorisation == "volunteer"
+                            ){
                             Navigator.of(context).pop(true);
                             Navigator.pushNamed(context, "/done");
+                            }
+                            else {
+                                  Fluttertoast.showToast(
+                                  msg: "Error in login Try Again",
+                                  backgroundColor: Colors.black,
+                                  textColor: Colors.white);
+                            }
                           },
                           child: Container(
                             height: 45.0,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:groundlia/Pages/Api/download.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 
 SData data2 = SData();
@@ -67,10 +69,24 @@ class _signupState extends State<signup> {
                 Input("mail", "Enter Email"),
                 Input("location", "Enter location"),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).pop(true);
-                    Navigator.of(context).pop(true);
-                    Navigator.pushNamed(context, "/startevent");
+                  onTap: () async {
+
+                    download dn = download();
+                    getCodes codes = getCodes();
+
+                    codes = await dn.GetAllCodes();
+
+                    if(codes.OrganizerCode != "") {
+                      Navigator.of(context).pop(true);
+                      Navigator.of(context).pop(true);
+                      Navigator.pushNamed(context, "/startevent");
+                    }
+                    else{
+                      Fluttertoast.showToast(
+                          msg: "Error in signup Try Again",
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white);
+                    }
                   },
                   child: Container(
                     height: 45.0,

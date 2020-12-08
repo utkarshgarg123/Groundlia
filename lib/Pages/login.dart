@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/signup.dart';
 import 'package:groundlia/Pages/util/widget.dart';
 
 class login extends StatefulWidget {
@@ -11,12 +10,47 @@ class _loginState extends State<login> {
 
   String name,code;
 
+  Widget Input(String symbol, String hint){
+    return Container(
+      margin: EdgeInsets.only(top: 30.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(20))
+      ),
+      width: MediaQuery.of(context).size.width - 100,
+      height: 50.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(100.0)),
+            child: Image.asset("Assets/Images/loginSignup/$symbol.png", height: 40.0,),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width - 200,
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: hint,
+              ),
+              onChanged: (val){
+                setState(() {
+                  if(symbol == "user")name = val;
+                  else code = val;
+                });
+              },
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
         child: SafeArea(
             child: Scaffold(
-//              resizeToAvoidBottomInset: false,
               body: Container(
                 width: MediaQuery.of(context).size.width,
                 color: Colors.grey[900],
@@ -28,70 +62,8 @@ class _loginState extends State<login> {
                       borderRadius: BorderRadius.all(Radius.circular(100.0)),
                       child: Image.asset("Assets/Images/appicon/Icon.png", height: 100.0,),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0),
-                      width: MediaQuery.of(context).size.width - 100,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                            child: Image.asset("Assets/Images/loginSignup/user.png", height: 40.0,),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 200,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Enter Name",
-                              ),
-                              onChanged: (val){
-                                setState(() {
-                                  name = val;
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),
-                      width: MediaQuery.of(context).size.width - 100,
-                      height: 50.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                            child: Image.asset("Assets/Images/loginSignup/key.png", height: 40.0,),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 200,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Access Code",
-                              ),
-                              onChanged: (val){
-                                setState(() {
-                                  code = val;
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    Input("user", "Enter Name"),
+                    Input("key", "Access code"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

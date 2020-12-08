@@ -8,7 +8,7 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
 
-  String name,email,location;
+  String name,mail,location;
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -35,7 +35,9 @@ class _signupState extends State<signup> {
               ),
               onChanged: (val){
                 setState(() {
-                  name = val;
+                  if(symbol == "user")name = val;
+                  else if(symbol == "mail") mail = val;
+                  else location = val;
                 });
               },
             ),

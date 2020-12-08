@@ -92,6 +92,7 @@ class _loginState extends State<login> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         GestureDetector(
+                          onTap: () {},
                           child: Container(
                             height: 45.0,
                             width: 70.0,

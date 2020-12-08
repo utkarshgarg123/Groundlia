@@ -17,7 +17,12 @@ class _watchbasketballState extends State<watchbasketball> {
         appBar: AppBar(
           backgroundColor: Colors.greenAccent[400],
           title: Text("Basketball Score Updates"),
-        )
+        ),
+      body: Container(
+        child: Center(
+          child: Image.asset("Assets/Images/nothingfound/nothing_found.png"),
+        ),
+      ),
     );
   }
 }

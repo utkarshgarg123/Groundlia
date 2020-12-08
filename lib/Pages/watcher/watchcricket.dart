@@ -16,7 +16,13 @@ class _watchcricketState extends State<watchcricket> {
         appBar: AppBar(
           backgroundColor: Colors.greenAccent[400],
           title: Text("Cricket Score Updates"),
-        )
+        ),
+
+      body: Container(
+        child: Center(
+          child: Image.asset("Assets/Images/nothingfound/nothing_found.png"),
+        ),
+      ),
     );
   }
 }

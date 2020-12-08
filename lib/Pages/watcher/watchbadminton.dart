@@ -17,7 +17,12 @@ class _watchbadmintonState extends State<watchbadminton> {
       appBar: AppBar(
         backgroundColor: Colors.greenAccent[400],
         title: Text("Badminton Score Updates"),
-      )
+      ),
+          body: Container(
+        child: Center(
+        child: Image.asset("Assets/Images/nothingfound/nothing_found.png"),
+    ),
+    ),
     );
   }
 }

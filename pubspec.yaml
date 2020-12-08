@@ -51,6 +51,7 @@ flutter:
     - Assets/Images/loginSignup/key.png
     - Assets/Images/loginSignup/user.png
     - Assets/Images/loginSignup/
+    - Assets/Images/nothingfound/nothing_found.png
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

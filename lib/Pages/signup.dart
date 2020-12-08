@@ -7,6 +7,9 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+
+  String name,email,location;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,7 +50,7 @@ class _signupState extends State<signup> {
                           ),
                           onChanged: (val){
                             setState(() {
-
+                              name = val;
                             });
                           },
                         ),
@@ -79,7 +82,7 @@ class _signupState extends State<signup> {
                           ),
                           onChanged: (val){
                             setState(() {
-
+                              email = val;
                             });
                           },
                         ),
@@ -111,7 +114,7 @@ class _signupState extends State<signup> {
                           ),
                           onChanged: (val){
                             setState(() {
-
+                              location = val;
                             });
                           },
                         ),

@@ -8,6 +8,9 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+  String name,code;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -49,7 +52,7 @@ class _loginState extends State<login> {
                               ),
                               onChanged: (val){
                                 setState(() {
-
+                                  name = val;
                                 });
                               },
                             ),
@@ -81,7 +84,7 @@ class _loginState extends State<login> {
                               ),
                               onChanged: (val){
                                 setState(() {
-
+                                  code = val;
                                 });
                               },
                             ),

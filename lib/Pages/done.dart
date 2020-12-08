@@ -15,7 +15,7 @@ class _DoneState extends State<Done> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Text(widget.data.name),
+        child: Text(""),
       ),
     );
   }

@@ -14,8 +14,8 @@ import 'package:groundlia/Pages/watcher/watchwhich.dart';
 void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: StartTheApp(),
-    routes: routes,
+    home: PlayCricket(),
+    // routes: routes,
   ));
 }
 

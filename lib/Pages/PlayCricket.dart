@@ -1,19 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/util/widget.dart';
+import 'package:groundlia/Pages/util/Constants.dart';
 
 class PlayCricket extends StatefulWidget {
-  int overs=10;
-  List <String> TeamA=[], TeamB=[];
   @override
   _PlayCricketState createState() => _PlayCricketState();
 }
 
 class _PlayCricketState extends State<PlayCricket> {
+  int overs = 10;
+  bool temp=false;
+  List<String> TeamA = [], TeamB = [];
+  String TeamOne, TeamTwo;
+  List<Widget> TeamAlpha = [];
+  void AddTeam1List() {
+      temp=false;
+      TeamAlpha.add(Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: TextField(
+
+          style: TextStyle(
+              color: Colors.white
+          ),
+
+          decoration: InputDecoration(
+              hintText: "Member ${TeamA.length + 1}",
+              hintStyle: TextStyle(
+                  color: Colors.white
+              )
+
+          ),
+          onChanged: (val){
+            if(!temp) TeamA.add('');
+            temp=true;
+            TeamA[TeamA.length-1]=val;
+          },
+        ),
+      ),
+      );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: onWillPop,
       child: SafeArea(
         child: Scaffold(
           body: Container(
@@ -22,21 +52,122 @@ class _PlayCricketState extends State<PlayCricket> {
             child: ListView(
               children: <Widget>[
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                      child: Image.asset(
-                        "Assets/Images/appicon/Icon.png",
-                        height: 100.0,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                        child: Image.asset(
+                          "Assets/Images/appicon/Icon.png",
+                          height: 100.0,
+                        ),
                       ),
-                    ),
-                    Text('Number of Overs',
-//                      style: ,
-                    )
-                  ],
-                ),
+                      Text(
+                        'Cricket Match',
+                        style: kHeadingTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Number of Overs - ',
+                            style: kHeadingTextStyle.copyWith(
+                              fontSize: 30,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                overs++;
+                              });
+                            },
+                            child: Icon(
+                              Icons.arrow_drop_up,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            ' $overs',
+                            textAlign: TextAlign.left,
+                            style: kHeadingTextStyle.copyWith(
+                              fontSize: 30,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                overs--;
+                              });
+                            },
+                            child: Icon(
+                              Icons.arrow_drop_down,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 30.0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        width: MediaQuery.of(context).size.width - 100,
+                        height: 50.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100.0)),
+                                child: Icon(
+                                  Icons.group_sharp,
+                                  size: 30,
+                                )),
+                            Container(
+                              width: MediaQuery.of(context).size.width - 200,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "TEAM 1 NAME",
+                                ),
+                                onChanged: (val) {
+                                  setState(() {
+                                    TeamOne = val;
+                                  });
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Text(
+                        "Members-",
+                        style: kHeadingTextStyle,
+                      ),
+
+                      Column(
+                        children: TeamAlpha,
+                      ),
+                      GestureDetector(
+                        onTap: (){
+
+                          setState(() {
+                            AddTeam1List();
+
+                          });
+                          for(int i=0;i<TeamA.length;i++){
+                            print(TeamA[i]);
+                          }
+                        },
+                        child: Icon(
+                            Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ]),
               ],
             ),
           ),

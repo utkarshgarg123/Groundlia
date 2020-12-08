@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/util/widget.dart';
+import 'package:groundlia/Pages/util/Data.dart';
 
 class signup extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
 
-  String name,mail,location;
+  SData data2 = SData();
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -35,9 +35,9 @@ class _signupState extends State<signup> {
               ),
               onChanged: (val){
                 setState(() {
-                  if(symbol == "user")name = val;
-                  else if(symbol == "mail") mail = val;
-                  else location = val;
+                  if(symbol == "user") data2.name = val;
+                  else if(symbol == "mail") data2.mail = val;
+                  else data2.location = val;
                 });
               },
             ),
@@ -68,6 +68,7 @@ class _signupState extends State<signup> {
                 Input("location", "Enter location"),
                 GestureDetector(
                   onTap: (){
+                    Navigator.of(context).pop(true);
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/startevent");
                   },

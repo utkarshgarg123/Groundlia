@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
 
 class login extends StatefulWidget {
@@ -8,7 +9,7 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
 
-  String name,code;
+  LData data1 = LData();
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -35,8 +36,8 @@ class _loginState extends State<login> {
               ),
               onChanged: (val){
                 setState(() {
-                  if(symbol == "user")name = val;
-                  else code = val;
+                  if(symbol == "user")data1.name = val;
+                  else data1.code = val;
                 });
               },
             ),

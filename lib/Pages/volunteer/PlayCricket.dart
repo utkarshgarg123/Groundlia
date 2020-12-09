@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/widget.dart';
 
+int overs = 10;
+bool temp=false;
+List<String> TeamA = [], TeamB = [];
+String TeamOne, TeamTwo;
+List<Widget> TeamAlpha = [];
+
 class PlayCricket extends StatefulWidget {
 
   @override
@@ -11,11 +17,7 @@ class PlayCricket extends StatefulWidget {
 
 class _PlayCricketState extends State<PlayCricket> {
 
-  int overs = 10;
-  bool temp=false;
-  List<String> TeamA = [], TeamB = [];
-  String TeamOne, TeamTwo;
-  List<Widget> TeamAlpha = [];
+
   void AddTeam1List() {
       temp=false;
       TeamAlpha.add(Padding(
@@ -143,38 +145,38 @@ class _PlayCricketState extends State<PlayCricket> {
                       style: kHeadingTextStyle,
                     ),
 
-                    Column(
-                      children: TeamAlpha,
-                    ),
-                    GestureDetector(
-                      onTap: (){
+                      Column(
+                        children: TeamAlpha,
+                      ),
+                      GestureDetector(
+                        onTap: (){
 
-                        setState(() {
-                          AddTeam1List();
+                          setState(() {
+                            AddTeam1List();
 
-                        });
-                        for(int i=0;i<TeamA.length;i++){
-                          print(TeamA[i]);
-                        }
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(top: 10.0),
-                        padding: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent[400],
-                          borderRadius: BorderRadius.all(Radius.circular(15.0))
-                        ),
-                        child: Icon(
-                            Icons.add,
-                          color: Colors.white,
+                          });
+                          for(int i=0;i<TeamA.length;i++){
+                            print(TeamA[i]);
+                          }
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10.0),
+                          padding: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent[400],
+                            borderRadius: BorderRadius.all(Radius.circular(15.0))
+                          ),
+                          child: Icon(
+                              Icons.add,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
-            ],
+                    ]),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

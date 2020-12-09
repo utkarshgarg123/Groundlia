@@ -17,8 +17,8 @@ void main(){
     debugShowCheckedModeBanner: false,
     home:
 //        SelectSport(),
-    // CricketScoreBoard(),
-     StartTheApp(),
+     CricketScoreBoard(),
+    // StartTheApp(),
      routes: routes,
   ));
 }

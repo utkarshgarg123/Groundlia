@@ -146,3 +146,23 @@ Widget showCodes(String code,String write,double width, BuildContext context){
     ),
   );
 }
+
+Widget Indicator(double width,String name){
+  return Container(
+    width: width-50,
+    margin: EdgeInsets.only(top: 10.0),
+    decoration: BoxDecoration(
+      color: Colors.red,
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
+    child: Center(
+      child: Text(
+        name,
+        style: TextStyle(
+          fontFamily: "mainfont",
+          fontSize: 30.0,
+        ),
+      ),
+    ),
+  );
+}

@@ -17,14 +17,24 @@ class download{
     return codes;
   }
 
-  Future<String> CricketScore(){
-
+  Future<Map<dynamic,dynamic>> CricketScore(LData data) async{
+    String json = await rootBundle.loadString('Samplejson/Cricketscore.json');
+    Map gettingScore = jsonDecode(json);
+    print(gettingScore);
+    return gettingScore;
   }
 
-  Future<String> BasketballScore(){
-
+  Future<Map<dynamic,dynamic>> BasketballScore(LData data) async{
+    String json = await rootBundle.loadString('Samplejson/Basketballscore.json');
+    Map gettingScore = jsonDecode(json);
+    print(gettingScore);
+    return gettingScore;
   }
-  Future<String> BadmintonScore(){
+  Future<Map<dynamic,dynamic>> BadmintonScore(LData data) async{
+    String json = await rootBundle.loadString('Samplejson/Badmintonscore.json');
+    Map gettingScore = jsonDecode(json);
+    print(gettingScore);
+    return gettingScore;
 
   }
 

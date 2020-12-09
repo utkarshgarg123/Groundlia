@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
+import 'package:groundlia/Pages/Api/download.dart';
+
+download dn = new download();
+Map<dynamic,dynamic> CricketScore = {};
+Map<dynamic,dynamic> BadmintonScore = {};
+Map<dynamic,dynamic> BasketBallScore = {};
 
 class watchwhich extends StatefulWidget {
+  LData data;
+  watchwhich(this.data);
+
   @override
   _watchwhichState createState() => _watchwhichState();
 }
@@ -33,7 +43,8 @@ class _watchwhichState extends State<watchwhich> {
                   ),)),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await dn.CricketScore(widget.data).then((value) => CricketScore.addAll(value));
                     Navigator.pushNamed(context, "/watchcricket");
                   },
                   child: Container(
@@ -51,7 +62,8 @@ class _watchwhichState extends State<watchwhich> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await dn.BadmintonScore(widget.data).then((value) => BadmintonScore.addAll(value));
                     Navigator.pushNamed(context, "/watchbadminton");
                   },
                   child: Container(
@@ -69,7 +81,8 @@ class _watchwhichState extends State<watchwhich> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await dn.BasketballScore(widget.data).then((value) => BasketBallScore.addAll(value));
                     Navigator.pushNamed(context, "/watchbasketball");
                   },
                   child: Container(

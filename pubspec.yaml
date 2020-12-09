@@ -52,6 +52,7 @@ flutter:
     - Assets/Images/loginSignup/user.png
     - Assets/Images/loginSignup/
     - Assets/Images/nothingfound/nothing_found.png
+    - Samplejson/codes.json
     - Assets/Images/appicon/tenor.gif
 #     - images/a_dot_ham.jpeg
 

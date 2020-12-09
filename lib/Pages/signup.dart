@@ -77,6 +77,9 @@ class _signupState extends State<signup> {
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
+                      print(codes.OrganizerCode);
+                      print(codes.VolunteerCode);
+                      print(codes.WatcherCode);
                       Navigator.of(context).pop(true);
                       Navigator.of(context).pop(true);
                       Navigator.pushNamed(context, "/startevent");

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
+import 'package:groundlia/Pages/util/widget.dart';
 
 class PlayCricket extends StatefulWidget {
   @override
@@ -24,9 +25,9 @@ class _PlayCricketState extends State<PlayCricket> {
           ),
 
           decoration: InputDecoration(
-              hintText: "Member ${TeamA.length + 1}",
+              hintText: "Member Name",
               hintStyle: TextStyle(
-                  color: Colors.white
+                  color: Colors.grey,
               )
 
           ),
@@ -55,24 +56,14 @@ class _PlayCricketState extends State<PlayCricket> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                        child: Image.asset(
-                          "Assets/Images/appicon/Icon.png",
-                          height: 100.0,
-                        ),
-                      ),
-                      Text(
-                        'Cricket Match',
-                        style: kHeadingTextStyle,
-                      ),
+                      Heading("Cricket Match"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Number of Overs - ',
+                            'Number of Overs: ',
                             style: kHeadingTextStyle.copyWith(
-                              fontSize: 30,
+                              fontSize: 25,
                             ),
                           ),
                           GestureDetector(
@@ -109,7 +100,7 @@ class _PlayCricketState extends State<PlayCricket> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 30.0),
+                        margin: EdgeInsets.only(top: 30.0,bottom: 10.0),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius:
@@ -132,6 +123,9 @@ class _PlayCricketState extends State<PlayCricket> {
                               child: TextField(
                                 decoration: InputDecoration(
                                   hintText: "TEAM 1 NAME",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 onChanged: (val) {
                                   setState(() {
@@ -144,7 +138,7 @@ class _PlayCricketState extends State<PlayCricket> {
                         ),
                       ),
                       Text(
-                        "Members-",
+                        "Members:",
                         style: kHeadingTextStyle,
                       ),
 
@@ -162,9 +156,17 @@ class _PlayCricketState extends State<PlayCricket> {
                             print(TeamA[i]);
                           }
                         },
-                        child: Icon(
-                            Icons.add,
-                          color: Colors.white,
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10.0),
+                          padding: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent[400],
+                            borderRadius: BorderRadius.all(Radius.circular(15.0))
+                          ),
+                          child: Icon(
+                              Icons.add,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ]),
@@ -173,6 +175,7 @@ class _PlayCricketState extends State<PlayCricket> {
           ),
         ),
       ),
+      onWillPop: onWillPop,
     );
   }
 }

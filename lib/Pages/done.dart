@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Extra/loading.dart';
 import 'package:groundlia/Pages/util/Data.dart';
@@ -14,10 +14,12 @@ class Done extends StatefulWidget {
 }
 
 class _DoneState extends State<Done> {
+  
+  var random = new Random();
 
   @override
   void initState() {
-    Timer(Duration(seconds: 2), (){
+    Timer(Duration(seconds: random.nextInt(5)), (){
       Navigator.of(context).pop(true);
       if(widget.data.Authorisation == "Organizer"){}
       else if(widget.data.Authorisation == "Volunteer"){}

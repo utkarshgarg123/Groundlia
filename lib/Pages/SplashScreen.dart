@@ -14,7 +14,7 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   void initState() {
-    Timer(Duration(seconds: 5), (){
+    Timer(Duration(seconds: 3), (){
       Navigator.of(context).pop(true);
       Navigator.pushNamed(context, "/login");
     });

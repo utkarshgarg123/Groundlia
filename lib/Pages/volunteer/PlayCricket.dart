@@ -4,11 +4,13 @@ import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/widget.dart';
 
 class PlayCricket extends StatefulWidget {
+
   @override
   _PlayCricketState createState() => _PlayCricketState();
 }
 
 class _PlayCricketState extends State<PlayCricket> {
+
   int overs = 10;
   bool temp=false;
   List<String> TeamA = [], TeamB = [];

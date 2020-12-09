@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/myapps/groundlia/lib/Pages/volunteer/PlayCricket.dart';
+import 'package:groundlia/Pages/volunteer/CricketScoreBoard.dart';
+import 'package:groundlia/Pages/volunteer/PlayCricket.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
-import 'file:///D:/myapps/groundlia/lib/Pages/volunteer/SportsSelectionScreen.dart';
+import 'package:groundlia/Pages/volunteer/SportsSelectionScreen.dart';
 import 'package:groundlia/Pages/done.dart';
 import 'package:groundlia/Pages/login.dart';
 import 'package:groundlia/Pages/signup.dart';
@@ -14,7 +15,9 @@ import 'package:groundlia/Pages/watcher/watchwhich.dart';
 void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: StartTheApp(),
+    home:
+    // CricketScoreBoard(),
+     StartTheApp(),
      routes: routes,
   ));
 }

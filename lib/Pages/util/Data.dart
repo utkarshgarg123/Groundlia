@@ -1,3 +1,5 @@
+
+//This is Login screen data
 class LData{
   String name = "";
   String code = "";
@@ -21,6 +23,8 @@ class LData{
 
 }
 
+
+//This is Signup screen data
 class SData{
   String name = "";
   String mail = "";

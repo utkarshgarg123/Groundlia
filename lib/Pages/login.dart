@@ -50,6 +50,13 @@ class _loginState extends State<login> {
   }
 
   @override
+  void initState() {
+    data1.name = "";
+    data1.code = "";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         child: SafeArea(
@@ -73,7 +80,7 @@ class _loginState extends State<login> {
                         GestureDetector(
                           onTap: () async {
                             upload up = upload();
-                            if(data1.name != null || data1.code != null)
+                            if(data1.name != "" && data1.code != "")
                             data1.Authorisation = await up.IsAuthorized(data1);
                             if
                             (data1.Authorisation == "watcher" ||

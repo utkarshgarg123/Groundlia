@@ -4,6 +4,7 @@ import 'package:groundlia/Pages/Api/download.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 
 SData data2 = SData();
+getCodes codes = getCodes();
 
 class signup extends StatefulWidget {
   @override
@@ -50,6 +51,13 @@ class _signupState extends State<signup> {
   }
 
   @override
+  void initState() {
+    data2.name = "";
+    data2.location = "";
+    data2.mail = "";
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -72,8 +80,7 @@ class _signupState extends State<signup> {
                   onTap: () async {
 
                     download dn = download();
-                    getCodes codes = getCodes();
-
+                    if(data2.name != "" && data2.mail != "" && data2.location != "")
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
@@ -86,7 +93,7 @@ class _signupState extends State<signup> {
                     }
                     else{
                       Fluttertoast.showToast(
-                          msg: "Error in signup Try Again",
+                          msg: "Error in signup or\nsignup Credentials are wrong",
                           backgroundColor: Colors.black,
                           textColor: Colors.white);
                     }

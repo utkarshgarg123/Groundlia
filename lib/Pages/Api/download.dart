@@ -17,4 +17,15 @@ class download{
     return codes;
   }
 
+  Future<String> CricketScore(){
+
+  }
+
+  Future<String> BasketballScore(){
+
+  }
+  Future<String> BadmintonScore(){
+
+  }
+
 }

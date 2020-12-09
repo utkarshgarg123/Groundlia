@@ -16,6 +16,7 @@ void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home:
+//        SelectSport(),
     // CricketScoreBoard(),
      StartTheApp(),
      routes: routes,
@@ -34,6 +35,9 @@ var routes = <String,WidgetBuilder>{
   "/watchcricket" : (BuildContext context) => watchcricket(data1),
   "/watchbasketball" : (BuildContext context) => watchbasketball(data1),
   "/watchbadminton" : (BuildContext context) => watchbadminton(data1),
+  "/cricketEdit" : (BuildContext context) => CricketScoreBoard(),
+//  "/BadmintonEdit" : (BuildContext context) => BadmintonScoreBoard(),
+//  "/BasketballEdit" : (BuildContext context) => BasketballScoreBoard(),
 };
 
 class StartTheApp extends StatefulWidget {

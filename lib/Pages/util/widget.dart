@@ -22,15 +22,21 @@ Future<bool> onWillPop() async {
   return true;
 }
 
-Widget Heading(String heading){
+Widget Heading(String heading,BuildContext context){
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(80.0)),
-        child: Image.asset(
-          "Assets/Images/appicon/Icon.png",
-          height: 80.0,
+      GestureDetector(
+        onTap: (){
+          Navigator.of(context).pop(true);
+          Navigator.pushNamed(context, "/login");
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(80.0)),
+          child: Image.asset(
+            "Assets/Images/appicon/Icon.png",
+            height: 80.0,
+          ),
         ),
       ),
       Container(
@@ -44,6 +50,34 @@ Widget Heading(String heading){
           child: Text(
             heading,
             style: kHeadingTextStyle,
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget EnterGame(String heading,BuildContext context){
+  return Row(
+    mainAxisSize: MainAxisSize.max,
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      GestureDetector(
+        onTap: (){
+          Navigator.pushNamed(context, "/selectsport");
+        },
+        child: Container(
+          margin: EdgeInsets.only(left: 10.0,top: 50.0),
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Colors.greenAccent[400],
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          ),
+          child: Center(
+            child: Text(
+              heading,
+              style: kHeadingTextStyle,
+            ),
           ),
         ),
       ),

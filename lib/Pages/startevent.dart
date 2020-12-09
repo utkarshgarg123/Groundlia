@@ -32,10 +32,11 @@ class _StarteventState extends State<Startevent> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
-                    Heading("Event Codes"),
+                    Heading("Event Codes",context),
                     showCodes(Showcodes.OrganizerCode.toString().toString(),"Organizers:- " + Showcodes.OrganizerCode.toString().toString(), MediaQuery.of(context).size.width,context),
                     showCodes(Showcodes.VolunteerCode.toString().toString(),"Volunteers:- " + Showcodes.VolunteerCode.toString().toString(), MediaQuery.of(context).size.width,context),
                     showCodes(Showcodes.WatcherCode.toString().toString(),"Watchers:- " + Showcodes.WatcherCode.toString().toString(), MediaQuery.of(context).size.width,context),
+                    EnterGame("Enter Game",context),
                   ],
                 ),
               ),

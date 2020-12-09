@@ -46,138 +46,135 @@ class _PlayCricketState extends State<PlayCricket> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: SafeArea(
-        child: Scaffold(
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            color: Colors.grey[900],
-            child: ListView(
-              children: <Widget>[
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Heading("Cricket Match"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Number of Overs: ',
-                            style: kHeadingTextStyle.copyWith(
-                              fontSize: 25,
-                            ),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.grey[900],
+          child: ListView(
+            children: <Widget>[
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Heading("Cricket Match",context),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Number of Overs: ',
+                          style: kHeadingTextStyle.copyWith(
+                            fontSize: 25,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                overs++;
-                              });
-                            },
-                            child: Icon(
-                              Icons.arrow_drop_up,
-                              size: 30,
-                              color: Colors.white,
-                            ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              overs++;
+                            });
+                          },
+                          child: Icon(
+                            Icons.arrow_drop_up,
+                            size: 30,
+                            color: Colors.white,
                           ),
-                          Text(
-                            ' $overs',
-                            textAlign: TextAlign.left,
-                            style: kHeadingTextStyle.copyWith(
-                              fontSize: 30,
-                            ),
+                        ),
+                        Text(
+                          ' $overs',
+                          textAlign: TextAlign.left,
+                          style: kHeadingTextStyle.copyWith(
+                            fontSize: 30,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                overs--;
-                              });
-                            },
-                            child: Icon(
-                              Icons.arrow_drop_down,
-                              size: 30,
-                              color: Colors.white,
-                            ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              overs--;
+                            });
+                          },
+                          child: Icon(
+                            Icons.arrow_drop_down,
+                            size: 30,
+                            color: Colors.white,
                           ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 30.0,bottom: 10.0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20))),
+                      width: MediaQuery.of(context).size.width - 100,
+                      height: 50.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100.0)),
+                              child: Icon(
+                                Icons.group_sharp,
+                                size: 30,
+                              )),
+                          Container(
+                            width: MediaQuery.of(context).size.width - 200,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "TEAM 1 NAME",
+                                hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              onChanged: (val) {
+                                setState(() {
+                                  TeamOne = val;
+                                });
+                              },
+                            ),
+                          )
                         ],
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 30.0,bottom: 10.0),
+                    ),
+                    Text(
+                      "Members:",
+                      style: kHeadingTextStyle,
+                    ),
+
+                    Column(
+                      children: TeamAlpha,
+                    ),
+                    GestureDetector(
+                      onTap: (){
+
+                        setState(() {
+                          AddTeam1List();
+
+                        });
+                        for(int i=0;i<TeamA.length;i++){
+                          print(TeamA[i]);
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(top: 10.0),
+                        padding: EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        width: MediaQuery.of(context).size.width - 100,
-                        height: 50.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100.0)),
-                                child: Icon(
-                                  Icons.group_sharp,
-                                  size: 30,
-                                )),
-                            Container(
-                              width: MediaQuery.of(context).size.width - 200,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: "TEAM 1 NAME",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                onChanged: (val) {
-                                  setState(() {
-                                    TeamOne = val;
-                                  });
-                                },
-                              ),
-                            )
-                          ],
+                          color: Colors.greenAccent[400],
+                          borderRadius: BorderRadius.all(Radius.circular(15.0))
+                        ),
+                        child: Icon(
+                            Icons.add,
+                          color: Colors.white,
                         ),
                       ),
-                      Text(
-                        "Members:",
-                        style: kHeadingTextStyle,
-                      ),
-
-                      Column(
-                        children: TeamAlpha,
-                      ),
-                      GestureDetector(
-                        onTap: (){
-
-                          setState(() {
-                            AddTeam1List();
-
-                          });
-                          for(int i=0;i<TeamA.length;i++){
-                            print(TeamA[i]);
-                          }
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10.0),
-                          padding: EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                            color: Colors.greenAccent[400],
-                            borderRadius: BorderRadius.all(Radius.circular(15.0))
-                          ),
-                          child: Icon(
-                              Icons.add,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ],
-            ),
+                    ),
+                  ]),
+            ],
           ),
         ),
       ),
-      onWillPop: onWillPop,
     );
   }
 }

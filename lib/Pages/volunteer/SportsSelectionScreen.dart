@@ -4,10 +4,17 @@ import 'package:groundlia/Pages/util/widget.dart';
 
 class SelectSport extends StatelessWidget {
 
-  Widget Options(IconData icon, String name){
+  Widget Options(IconData icon, String name,BuildContext context,double size){
     return GestureDetector(
       onTap: (){
-        print('hey');
+        if(name == "Cricket"){
+          Navigator.pushNamed(context, "/playCricket");
+        }
+        else if(name == "Basketball"){}
+        else if(name == "Badminton"){}
+        else{
+          Navigator.pushNamed(context, "/watchwhich");
+        }
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -31,7 +38,7 @@ class SelectSport extends StatelessWidget {
               child: Text(name,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 45,
+                    fontSize: size,
                     fontFamily: "mainfont"
                 ),
               ),
@@ -53,27 +60,11 @@ class SelectSport extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Heading("Choose Game"),
-//                  ClipRRect(
-//                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
-//                    child: Image.asset(
-//                      "Assets/Images/appicon/Icon.png",
-//                      height: 100.0,
-//                    ),
-//                  ),
-//
-//                  Container(
-//                    padding: EdgeInsets.symmetric(vertical: 40),
-//                    child: Text('What are you Playing Today?',
-//                      style: TextStyle(
-//                        fontSize: 20,
-//                        color: Colors.white,
-//                      ),
-//                    ),
-//                  ),
-                Options(Icons.sports_cricket_outlined, "Cricket"),
-                Options(Icons.sports_basketball_outlined, "Basketball"),
-                Options(Icons.sports_tennis_outlined, "Badminton"),
+                Heading("Editor Panel",context),
+                Options(Icons.sports_cricket_outlined, "Cricket",context,45),
+                Options(Icons.sports_basketball_outlined, "Basketball",context,45),
+                Options(Icons.sports_tennis_outlined, "Badminton",context,45),
+                Options(Icons.watch_later, "Watch Ongoing game\n(If Any)",context,25),
               ]
           ),
         ),

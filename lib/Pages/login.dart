@@ -38,7 +38,7 @@ class _loginState extends State<login> {
               ),
               onChanged: (val){
                 setState(() {
-                  if(symbol == "user")data1.name = val;
+                  if(symbol == "user") data1.name = val;
                   else data1.code = val;
                 });
               },
@@ -47,6 +47,13 @@ class _loginState extends State<login> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    data1.name = "";
+    data1.code = "";
+    super.initState();
   }
 
   @override
@@ -72,10 +79,9 @@ class _loginState extends State<login> {
                       children: [
                         GestureDetector(
                           onTap: () async {
-
                             upload up = upload();
-                            data1.Authorisation = await up.IsAuthorized();
-
+                            if(data1.name != "" && data1.code != "")
+                            data1.Authorisation = await up.IsAuthorized(data1);
                             if
                             (data1.Authorisation == "watcher" ||
                                 data1.Authorisation == "organizer" ||
@@ -86,7 +92,7 @@ class _loginState extends State<login> {
                             }
                             else {
                                   Fluttertoast.showToast(
-                                  msg: "Error in login Try Again",
+                                  msg: "Error in login\nor the login credentials are wrong",
                                   backgroundColor: Colors.black,
                                   textColor: Colors.white);
                             }

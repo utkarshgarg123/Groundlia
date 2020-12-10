@@ -1,0 +1,91 @@
+{
+  "Organizer": "IIIC",
+  "Location": "IIITA",
+  "Total Match": 2,
+  "Game1": {
+    "WhoWinToss": "Team1",
+    "Winner": "Processing",
+    "Total Over": "10",
+    "Team1": {
+      "Mode": "Batting",
+      "Score": "130",
+      "Wickets": "3",
+      "Current Over": "7",
+      "Members": {
+        "Player1": "hwvuh3rbsgdgrvergvegrge3",
+        "Player2": "hwvuh3rvgersvservervrrb3",
+        "Player3": "hwvuarvgwrvgarvh3rb3",
+        "Player4": "hwvervfervgeruh3rb3",
+        "Player5": "hwervgervgergvgefrfvuh3rb3",
+        "Player6": "hwvuhsrvsve3rb3",
+        "Player7": "hwvuhwrgwrwvervre3rb3",
+        "Player8": "hwrvfervwrvuh3rb3",
+        "Player9": "hwvuwvwvewfeh3rb3",
+        "Player10": "hwvuwegwwgh3rb3"
+      },
+      "Captain": "C"
+    },
+    "Team2": {
+      "Mode": "Bolling",
+      "Score": "190",
+      "Wickets": "8",
+      "Current Over":"10",
+      "Members": {
+        "Player1": "gwewefewvewfrevvbwj",
+        "Player2": "gweefwefwefevbwj",
+        "Player3": "gwevewvfervfwdfsbwj",
+        "Player4": "gwevwefwefwfwefwebwj",
+        "Player5": "gwewefwefwecewvbwj",
+        "Player6": "gwevefwecweefgfwedwewebwj",
+        "Player7": "gwevwefwefweewfbwj",
+        "Player8": "gwewefwewefweewvbwj",
+        "Player9": "gwewefwecwfqevbwj",
+        "Player10": "gwwewefwefwwfwefwevbwj"
+      },
+      "Captain": "P"
+    }
+  },
+  "Game2": {
+    "WhoWinToss": "Team1",
+    "Winner": "Processing",
+    "Total Over": "10",
+    "Team1": {
+      "Mode": "Batting",
+      "Score": "130",
+      "Wickets": "3",
+      "Current Over": "7",
+      "Members": {
+        "Player1": "gwefefwefwevbwj",
+        "Player2": "gwewefwefwevbwj",
+        "Player3": "gwewefwefvbwj",
+        "Player4": "gwewefwfvbwj",
+        "Player5": "gwevwefwefbwj",
+        "Player6": "gwewefwefvbwj",
+        "Player7": "gwwefwefevbwj",
+        "Player8": "gwwefweevbwj",
+        "Player9": "gwwefweevbwj",
+        "Player10": "gwewefwefwewfwqvbwj"
+      },
+      "Captain": "E"
+    },
+    "Team2": {
+      "Mode": "Bolling",
+      "Score": "190",
+      "Wickets": "8",
+      "Current Over":"10",
+      "Members": {
+        "Player1": "hwvuhqqed2edw3rb3",
+        "Player2": "hwqdqwedwevuh3rb3",
+        "Player3": "hwvufwefwewh3rb3",
+        "Player4": "hwvuqwdqedh3rb3",
+        "Player5": "hwvqeqfwefweuh3rb3",
+        "Player6": "hwvqefdweferfuh3rb3",
+        "Player7": "hwvwefwefewfwuh3rb3",
+        "Player8": "hwvwefefewfeuh3rb3",
+        "Player9": "hwvuefef2qqh3rb3",
+        "Player10": "hwvqqdfweffeuh3rb3"
+      },
+      "Captain": "U"
+    }
+  }
+}

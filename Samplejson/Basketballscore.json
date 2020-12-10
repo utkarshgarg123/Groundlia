@@ -1,0 +1,41 @@
+{
+  "Organizer": "IIIC",
+  "Location": "IIITA",
+  "Total Match": 2,
+  "Game1": {
+    "Winner": "Processing",
+    "Max Score": "30",
+    "Team1": {
+      "Score": "6",
+      "Members": {
+        "Player1": "gwefefwefwevbwj",
+        "Player2": "gwewefwefwevbwj"
+      }
+    },
+    "Team2": {
+      "Score": "5",
+      "Members": {
+        "Player1": "hwvuhqqed2edw3rb3",
+        "Player2": "hwqdqwedwevuh3rb3"
+      }
+    }
+  },
+  "Game2": {
+    "Winner": "Processing",
+    "Max Score": "30",
+    "Team1": {
+      "Score": "6",
+      "Members": {
+        "Player1": "gwefefwefwevbwj",
+        "Player2": "gwewefwefwevbwj"
+      }
+    },
+    "Team2": {
+      "Score": "5",
+      "Members": {
+        "Player1": "hwvuhqqed2edw3rb3",
+        "Player2": "hwqdqwedwevuh3rb3"
+      }
+    }
+  }
+}

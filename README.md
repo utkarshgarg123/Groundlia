@@ -1,6 +1,7 @@
 # groundlia
 
-A new Flutter application which provide the Userfriendly Interface to organise an sports event in an organised way
+A new Flutter application which provide the Userfriendly Interface to organise an sports event in an organised way.
+- [Backend repo](https://github.com/cosmoimai/Groundlia-backend)
 
 ## Getting Started
 

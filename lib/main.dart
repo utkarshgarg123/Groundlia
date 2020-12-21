@@ -30,7 +30,6 @@ var routes = <String,WidgetBuilder>{
   "/cricketedit" : (BuildContext context) => CricketScoreBoard(),
   "/startevent" : (BuildContext context) => Startevent(data2,codes),
   "/playCricket" : (BuildContext context) => PlayCricket(file),
-//  "/editcricket" : (BuildContext context) => CricketScoreBoard(),
   "/selectsport" : (BuildContext context) => SelectSport(),
   "/watchwhich" : (BuildContext context) => watchwhich(data1),
   "/watchcricket" : (BuildContext context) => watchcricket(data1,CricketScore),

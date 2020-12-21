@@ -18,7 +18,7 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
       onPressed: () {
 
         setState(() {
-          if(act>0) score+=act;
+          if(act>=0) score+=act;
           else if(act==-1) wicket+=1;
           else {score=0;wicket=0;CurrentOver=0;Bowl=0;}
           if(Bowl==6) {CurrentOver+=0.5; Bowl=0;}
@@ -83,6 +83,7 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
                     ScoreButton('1',1),
                     ScoreButton('2',2),
                     ScoreButton('3',3),
+                    ScoreButton('0',0),
                     ScoreButton('W',-1),
                     ScoreButton('R', -2)
                   ],

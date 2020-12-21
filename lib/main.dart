@@ -16,9 +16,8 @@ void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home:
-//        SelectSport(),
-     CricketScoreBoard(),
-    // StartTheApp(),
+        StartTheApp(),
+//     CricketScoreBoard(),
      routes: routes,
   ));
 }

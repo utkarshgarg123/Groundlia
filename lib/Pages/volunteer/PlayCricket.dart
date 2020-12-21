@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/player_data/Admin_file.dart';
+import 'package:groundlia/Pages/player_data/cricket_players.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/widget.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 int overs = 10;
 bool team1 = true;
+bool showscreen = false;
 List<String> TeamA = [], TeamB = [];
 String TeamOne = "team1", TeamTwo = "team2";
 List<Widget> TeamAlpha = [];
 List<Widget> TeamBeta = [];
+cricket_player cricket_team1 = new cricket_player();
+cricket_player cricket_team2 = new cricket_player();
 
 class PlayCricket extends StatefulWidget {
+  admin_file cricket_file;
+  PlayCricket(this.cricket_file);
+
 
   @override
   _PlayCricketState createState() => _PlayCricketState();
@@ -24,6 +31,8 @@ class _PlayCricketState extends State<PlayCricket> {
     AddTeam1List();
     AddTeam2List();
     super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => dialog(context));
   }
 
 
@@ -46,10 +55,7 @@ class _PlayCricketState extends State<PlayCricket> {
           onChanged: (val){
             TeamA[TeamA.length-1]=val;
             if(TeamA[TeamA.length-1].contains(new RegExp(r'[!@#$%^&*()-_+=;/\,.?":{}|<>]'))){
-              Fluttertoast.showToast(
-              msg: "No special characters Allowed",
-              backgroundColor: Colors.black,
-              textColor: Colors.white);
+             toast("No Special Characters allowed");
               }
           },
         ),
@@ -76,10 +82,7 @@ class _PlayCricketState extends State<PlayCricket> {
         onChanged: (val){
           TeamB[TeamB.length-1]=val;
           if(TeamB[TeamB.length-1].contains(new RegExp(r'[!@#$%^&*()-_+=;/\,.?":{}|<>]'))){
-            Fluttertoast.showToast(
-                msg: "No special characters Allowed",
-                backgroundColor: Colors.black,
-                textColor: Colors.white);
+            toast("No Special Characters allowed");
           }
         },
       ),
@@ -92,7 +95,52 @@ class _PlayCricketState extends State<PlayCricket> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: (showscreen)?Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: Colors.grey[900],
+              child: Column(
+                children: [
+                  Heading("Final view", context),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height - 210,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          finalCard(cricket_team1,context),
+                          finalCard(cricket_team2,context),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        showscreen = false;
+                      });
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, "/cricketedit");
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: borderRadius(15),
+                        color: Colors.greenAccent[400],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.done,size: 35,),
+                          Text("done",style: TextStyle(fontSize: 30.0),),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+        )
+            :Container(
           width: MediaQuery.of(context).size.width,
           color: Colors.grey[900],
           child: ListView(
@@ -219,34 +267,22 @@ class _PlayCricketState extends State<PlayCricket> {
                               setState(() {
                                 if(team1){
                                 if(TeamA[TeamA.length-1].contains(new RegExp(r'[!@#$%^&*()-_+=;/\,.?":{}|<>]'))){
-                                  Fluttertoast.showToast(
-                                      msg: "No special characters Allowed",
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white);
+                                  toast("No Special characters allowed");
                                 }else if(TeamA[TeamA.length-1] != '') {
                                   AddTeam1List();
                                 }
                                 else{
-                                  Fluttertoast.showToast(
-                                      msg: "Invalid Player Name",
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white);
+                                  toast("Invalid Player Name");
                                 }
                               }
                               else{
                                   if(TeamB[TeamB.length-1].contains(new RegExp(r'[!@#$%^&*()-_+=;/\,.?":{}|<>]'))){
-                                    Fluttertoast.showToast(
-                                        msg: "No special characters Allowed",
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white);
+                                    toast("No special characters allowed");
                                   }else if(TeamB[TeamB.length-1] != '') {
                                     AddTeam2List();
                                   }
                                   else{
-                                    Fluttertoast.showToast(
-                                        msg: "Invalid Player Name",
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white);
+                                    toast("Invalid Player Name");
                                   }
                                 }
                               });
@@ -276,7 +312,58 @@ class _PlayCricketState extends State<PlayCricket> {
                               context: context,
                               barrierDismissible: false, // user must tap button!
                               builder: (BuildContext context) {
-                                return (team1)?AlertDialog(
+                                return (!team1)?AlertDialog(
+                                  title: Text('Saving Team 2: ' + TeamTwo),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: <Widget>[
+                                        Text('On Approve You cant change'),
+                                        Text('Team 2 Members list'),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: [
+                                    InkWell(
+                                      child: Text('Approve'),
+                                      onTap: () {
+                                        if(TeamB.length <= 1 || TeamB[TeamB.length - 1] == ''){
+                                          toast("Somethings not right");
+                                        }
+                                        else {
+                                          setState(() {
+                                            showscreen = true;
+                                          });
+                                          Navigator.of(context).pop();
+                                          cricket_team2.getting_players(
+                                              overs, TeamTwo, TeamB);
+                                          widget.cricket_file
+                                              .saving_cricket_players(
+                                              cricket_team1);
+                                          widget.cricket_file
+                                              .saving_cricket_players(
+                                              cricket_team2);
+                                          team1 = true;
+                                          TeamA.clear();
+                                          TeamB.clear();
+                                          TeamOne = "";
+                                          TeamTwo = "";
+                                          TeamAlpha.clear();
+                                          TeamBeta.clear();
+                                          AddTeam1List();
+                                          AddTeam2List();
+                                        }
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text('Deny'),
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ) :AlertDialog(
                                   title: Text('Saving Team 1: ' + TeamOne),
                                   content: SingleChildScrollView(
                                     child: ListBody(
@@ -291,39 +378,15 @@ class _PlayCricketState extends State<PlayCricket> {
                                       child: Text('Approve'),
                                       onPressed: () {
                                         setState(() {
-                                          team1 = false;
-                                          Navigator.of(context).pop();
-                                        });
-                                      },
-                                    ),
-                                    TextButton(
-                                      child: Text('Deny'),
-                                      onPressed: () {
-                                        setState(() {
-                                          Navigator.of(context).pop();
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ):AlertDialog(
-                                  title: Text('Saving Team 2: ' + TeamTwo),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: <Widget>[
-                                        Text('On Approve You cant change'),
-                                        Text('Team 2 Members list'),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: [
-                                    InkWell(
-
-                                      child: Text('Approve'),
-                                      onTap: () {
-                                        setState(() {
-                                          Navigator.of(context).pop();
-                                          Navigator.of(context).pop(true);
-                                          Navigator.pushNamed(context, "/cricketEdit");
+                                          if(TeamA.length <= 1 || TeamA[TeamA.length - 1] == ''){
+                                            toast("Somethings not right");
+                                          }
+                                          else {
+                                            team1 = false;
+                                            cricket_team1.getting_players(
+                                                overs, TeamOne, TeamA);
+                                            Navigator.of(context).pop();
+                                          }
                                         });
                                       },
                                     ),

@@ -166,3 +166,10 @@ Widget Indicator(double width,String name){
     ),
   );
 }
+
+Future<bool> toast(String msg){
+  return Fluttertoast.showToast(
+      msg: msg,
+      backgroundColor: Colors.black,
+      textColor: Colors.white);
+}

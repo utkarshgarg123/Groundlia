@@ -27,16 +27,17 @@ var routes = <String,WidgetBuilder>{
   "/login": (BuildContext context) => login(),
   "/signup" : (BuildContext context) => signup(),
   "/done" : (BuildContext context) => Done(data1),
+  "/cricketedit" : (BuildContext context) => CricketScoreBoard(),
   "/startevent" : (BuildContext context) => Startevent(data2,codes),
-  "/playCricket" : (BuildContext context) => PlayCricket(),
+  "/playCricket" : (BuildContext context) => PlayCricket(file),
+//  "/editcricket" : (BuildContext context) => CricketScoreBoard(),
   "/selectsport" : (BuildContext context) => SelectSport(),
   "/watchwhich" : (BuildContext context) => watchwhich(data1),
   "/watchcricket" : (BuildContext context) => watchcricket(data1,CricketScore),
   "/watchbasketball" : (BuildContext context) => watchbasketball(data1,BasketBallScore),
   "/watchbadminton" : (BuildContext context) => watchbadminton(data1,BadmintonScore),
-  "/cricketEdit" : (BuildContext context) => CricketScoreBoard(),
-//  "/BadmintonEdit" : (BuildContext context) => BadmintonScoreBoard(),
-//  "/BasketballEdit" : (BuildContext context) => BasketballScoreBoard(),
+//  "/EditBadminton" : (BuildContext context) => BadmintonScoreBoard(file),
+//  "/EditBasketball" : (BuildContext context) => BasketballScoreBoard(file),
 };
 
 class StartTheApp extends StatefulWidget {

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/player_data/Admin_file.dart';
 import 'package:groundlia/Pages/util/widget.dart';
+
+admin_file file = new admin_file();
 
 class SelectSport extends StatelessWidget {
 

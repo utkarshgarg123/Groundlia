@@ -13,9 +13,9 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
   double CurrentOver=0;
   int Bowl=0;
   //Button for score
-  FloatingActionButton ScoreButton(String show,int act){
-    return FloatingActionButton(
-      onPressed: () {
+  GestureDetector ScoreButton(String show,int act){
+    return GestureDetector(
+      onTap: () {
 
         setState(() {
           if(act>=0) score+=act;
@@ -30,8 +30,6 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
       },
       child: Text(show,
         style: kHeadingTextStyle,),
-      backgroundColor: Colors.black,
-
     );
   }
   @override

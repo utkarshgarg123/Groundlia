@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'PlayCricket.dart';
 
-
 class CricketScoreBoard extends StatefulWidget {
   @override
   _CricketScoreBoardState createState() => _CricketScoreBoardState();
@@ -16,20 +15,24 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
   GestureDetector ScoreButton(String show,int act){
     return GestureDetector(
       onTap: () {
-
         setState(() {
           if(act>=0) score+=act;
           else if(act==-1) wicket+=1;
-          else {score=0;wicket=0;CurrentOver=0;Bowl=0;}
           if(Bowl==6) {CurrentOver+=0.5; Bowl=0;}
           else if(act!=-2)CurrentOver+=0.1;
         });
         Bowl++;
         if(Bowl>6) Bowl=0;
-
       },
-      child: Text(show,
-        style: kHeadingTextStyle,),
+      child: Container(
+        padding: EdgeInsets.only(left: 10.0,right: 10.0),
+        decoration: BoxDecoration(
+          borderRadius: borderRadius(200),
+          color: Colors.greenAccent[400],
+        ),
+        child: Text(show,
+          style: kHeadingTextStyle,),
+      ),
     );
   }
   @override
@@ -75,6 +78,7 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical:16.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ScoreButton('6',6),
                     ScoreButton('4',4),
@@ -83,7 +87,6 @@ class _CricketScoreBoardState extends State<CricketScoreBoard> {
                     ScoreButton('3',3),
                     ScoreButton('0',0),
                     ScoreButton('W',-1),
-                    ScoreButton('R', -2)
                   ],
                 ),
               ),

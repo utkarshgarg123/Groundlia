@@ -83,9 +83,9 @@ class _loginState extends State<login> {
                             if(data1.name != "" && data1.code != "")
                             data1.Authorisation = await up.IsAuthorized(data1);
                             if
-                            (data1.Authorisation == "watcher" ||
-                                data1.Authorisation == "organizer" ||
-                                data1.Authorisation == "volunteer"
+                            (data1.Authorisation == "Watcher" ||
+                                data1.Authorisation == "Organiser" ||
+                                data1.Authorisation == "Volunteer"
                             ){
                             Navigator.of(context).pop(true);
                             Navigator.pushNamed(context, "/done");

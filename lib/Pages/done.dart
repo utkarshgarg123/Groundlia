@@ -21,7 +21,7 @@ class _DoneState extends State<Done> {
   void initState() {
     Timer(Duration(seconds: random.nextInt(5)), (){
       Navigator.of(context).pop(true);
-      if(widget.data.Authorisation == "Organizer"){
+      if(widget.data.Authorisation == "Organiser"){
         Navigator.pushNamed(context, "/startevent");
       }
       else if(widget.data.Authorisation == "Volunteer"){

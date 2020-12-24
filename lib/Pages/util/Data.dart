@@ -29,6 +29,9 @@ class SData{
   String name = "";
   String mail = "";
   String location = "";
+  String WatcherCode = "";
+  String VolunteerCode = "";
+  String OrganizerCode = "";
 
   SData({
     this.name,

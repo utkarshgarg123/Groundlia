@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
+import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'Extra/loading.dart';
 
 LData data1 = LData();
 
@@ -12,6 +15,8 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+
+  bool isloading = false;
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -61,7 +66,7 @@ class _loginState extends State<login> {
     return WillPopScope(
         child: SafeArea(
             child: Scaffold(
-              body: Container(
+              body: (isloading)?loading_container():Container(
                 width: MediaQuery.of(context).size.width,
                 color: Colors.grey[900],
                 child: Column(
@@ -79,6 +84,9 @@ class _loginState extends State<login> {
                       children: [
                         GestureDetector(
                           onTap: () async {
+                            setState(() {
+                              isloading = true;
+                            });
                             upload up = upload();
                             if(data1.name != "" && data1.code != "")
                             data1.Authorisation = await up.IsAuthorized(data1);

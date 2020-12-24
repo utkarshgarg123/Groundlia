@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Extra/loading.dart';
+import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 
 SData data2 = SData();
@@ -12,6 +14,8 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+
+  bool isloading = false;
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -62,7 +66,7 @@ class _signupState extends State<signup> {
     return SafeArea(
         child: Scaffold(
 //          resizeToAvoidBottomInset: false,
-          body: Container(
+          body: (!isloading)?Container(
             width: MediaQuery.of(context).size.width,
             color: Colors.grey[900],
             child: Column(
@@ -78,6 +82,10 @@ class _signupState extends State<signup> {
                 Input("location", "Enter location"),
                 GestureDetector(
                   onTap: () async {
+
+                    setState(() {
+                      isloading = true;
+                    });
 
                     download dn = download();
                     if(data2.name != "" && data2.mail != "" && data2.location != "")
@@ -115,7 +123,7 @@ class _signupState extends State<signup> {
                 )
               ],
             ),
-          ),
+          ):loading_container(),
         )
     );
   }

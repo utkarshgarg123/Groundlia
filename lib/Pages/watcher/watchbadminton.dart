@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/Listview.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -18,10 +19,18 @@ class watchbadminton extends StatefulWidget {
 
 class _watchbadmintonState extends State<watchbadminton> {
   int number_of_games;
+  String organizer,location;
+  void asyncfunction (){
+    saving sav = new saving();
+    setState(() async {
+      await sav.readfile().then((value){organizer = value["name"]; location = value["location"];});
+    });
+  }
 
   @override
   void initState(){
     dn.BadmintonScore(widget.data).then((value) => widget.Score.addAll(value));
+    asyncfunction();
     number_of_games = widget.Score["Total Match"];
     super.initState();
   }
@@ -46,8 +55,8 @@ class _watchbadmintonState extends State<watchbadminton> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Indicator(MediaQuery.of(context).size.width,"Organizer: "+widget.Score["Organizer"]),
-              Indicator(MediaQuery.of(context).size.width,"Location: " +widget.Score["Location"]),
+              Indicator(MediaQuery.of(context).size.width,"Organizer: "+organizer),
+              Indicator(MediaQuery.of(context).size.width,"Location: " +location),
               Container(
                 margin: EdgeInsets.only(top: 10.0),
                 width: MediaQuery.of(context).size.width-40.0,

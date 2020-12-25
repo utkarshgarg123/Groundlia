@@ -21,4 +21,119 @@ class upload{
     print(res["identity"]);
     return res["identity"];
   }
+
+  Future<void> createbadminton(String code,int players, List<String> team1, List<String> team2) async {
+    print("team1: " + team1.toString());
+    print("team2: " + team2.toString());
+    String url = "https://ground-lia.herokuapp.com/badminton/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": team1,
+          "Score": 0
+        },
+        "Team_B": {
+          "Members": team2,
+          "Score": 0
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
+  Future<void> endbadminton(String code)async{
+    String url = "https://ground-lia.herokuapp.com/badminton/endresult/" + code;
+    var response = await http.get(url);
+    print("endres" + response.toString());
+  }
+
+  Future<void> endbasketball(String code)async{
+    String url = "https://ground-lia.herokuapp.com/basketball/endresult/" + code;
+    var response = await http.get(url);
+    print("endres" + response.toString());
+  }
+
+  Future<void> updatebadminton(String code,var Score) async {
+    String url = "https://ground-lia.herokuapp.com/badminton/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": Score.data.teamA.members,
+          "Score": int.parse(Score.data.teamA.score)
+        },
+        "Team_B": {
+          "Members": Score.data.teamB.members,
+          "Score": int.parse(Score.data.teamB.score)
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
+  Future<void> updatebasketball(String code,var Score) async {
+    String url = "https://ground-lia.herokuapp.com/basketball/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": Score.data.teamA.members,
+          "Score": int.parse(Score.data.teamA.score)
+        },
+        "Team_B": {
+          "Members": Score.data.teamB.members,
+          "Score": int.parse(Score.data.teamB.score)
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
+
+
+  Future<void> createbasketball(String code,int players, List<String> team1, List<String> team2) async {
+    print("team1: " + team1.toString());
+    print("team2: " + team2.toString());
+    String url = "https://ground-lia.herokuapp.com/basketball/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": team1,
+          "Score": 0
+        },
+        "Team_B": {
+          "Members": team2,
+          "Score": 0
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
 }

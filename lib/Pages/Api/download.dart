@@ -53,4 +53,22 @@ class download{
     return res;
   }
 
+  Future<bool> Badmintonnewgame(String code) async{
+    print(code);
+    String url = "https://ground-lia.herokuapp.com/badminton/" + code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+    print(res.toString());
+    if(res["data"]["new"] == "yes") return true;
+    else return false;
+  }
+
+  Future<bool> Basketballnewgame(String code) async{
+    String url = "https://ground-lia.herokuapp.com/basketball/" + code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+    if(res["data"]["new"] == "yes") return true;
+    else return false;
+  }
+
 }

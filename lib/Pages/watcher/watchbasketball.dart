@@ -24,7 +24,7 @@ class _watchbasketballState extends State<watchbasketball> {
   bool isloading = true;
   @override
   void initState(){
-    time = new Timer.periodic(Duration(seconds: 10), (Timer t) => Update());
+    time = new Timer.periodic(Duration(seconds: 5), (Timer t) => Update());
     super.initState();
   }
 
@@ -35,7 +35,6 @@ class _watchbasketballState extends State<watchbasketball> {
   }
 
   Update() async {
-    print("here");
     download dn = download();
     await dn.BasketballScore(widget.data).then((value) {
       widget.Score.dataelements(value["data"]["Team_A"]["Members"],
@@ -58,7 +57,7 @@ class _watchbasketballState extends State<watchbasketball> {
 
       body: (isloading)?loading_container():Container(
         width: MediaQuery.of(context).size.width,
-        child: (widget.Score.data.dataNew ==  "yes")?Container(
+        child: (widget.Score.data.dataNew ==  "no")?Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

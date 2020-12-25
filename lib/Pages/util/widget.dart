@@ -155,12 +155,16 @@ Widget Indicator(double width,String name){
       color: Colors.red,
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
     ),
-    child: Center(
-      child: Text(
-        name,
-        style: TextStyle(
-          fontFamily: "mainfont",
-          fontSize: 30.0,
+    child: Container(
+      margin: EdgeInsets.all(10.0),
+      child: Center(
+        child: Text(
+          name,
+          maxLines: 1,
+          style: TextStyle(
+            fontFamily: "mainfont",
+            fontSize: 15.0,
+          ),
         ),
       ),
     ),

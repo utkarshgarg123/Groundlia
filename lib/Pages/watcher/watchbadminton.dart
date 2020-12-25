@@ -26,7 +26,7 @@ class _watchbadmintonState extends State<watchbadminton> {
   bool isloading = true;
   @override
   void initState(){
-    time = new Timer.periodic(Duration(seconds: 10), (Timer t) => Update());
+    time = new Timer.periodic(Duration(seconds: 5), (Timer t) => Update());
   print(widget.Score.data.dataNew);
     super.initState();
   }
@@ -38,7 +38,6 @@ class _watchbadmintonState extends State<watchbadminton> {
   }
 
   void Update()async{
-    print("here");
     download dn = download();
     await dn.BadmintonScore(widget.data).then((value) {
       widget.Score.dataelements(value["data"]["Team_A"]["Members"],
@@ -61,41 +60,43 @@ class _watchbadmintonState extends State<watchbadminton> {
 
       body: (isloading)?loading_container():Container(
         width: MediaQuery.of(context).size.width,
-        child: (widget.Score.data.dataNew ==  "yes")?Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Indicator(MediaQuery.of(context).size.width,"Organizer: "+ widget.Score.organizer),
-              Indicator(MediaQuery.of(context).size.width,"Location: " + widget.Score.location),
-              Container(
-                margin: EdgeInsets.only(top: 10.0),
-                width: MediaQuery.of(context).size.width-40.0,
-                height: MediaQuery.of(context).size.height-270,
-                color: Colors.blue,
-                child: Center(child: SingleChildScrollView(child: BasketballEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
-              ),
-              GestureDetector(
-                onTap: ()async {
-                  await Update();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                    color: Colors.greenAccent[400],
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  ),
-                  margin: EdgeInsets.only(top: 20.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.refresh),
-                      Text("Refresh"),
-                    ],
-                  ),
+        child: (widget.Score.data.dataNew ==  "no")?SingleChildScrollView(
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Indicator(MediaQuery.of(context).size.width,"Organizer: "+ widget.Score.organizer),
+                Indicator(MediaQuery.of(context).size.width,"Location: " + widget.Score.location),
+                Container(
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: MediaQuery.of(context).size.width-40.0,
+                  height: MediaQuery.of(context).size.height-270,
+                  color: Colors.blue,
+                  child: Center(child: SingleChildScrollView(child: BasketballEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
                 ),
-              )
-            ],
+                GestureDetector(
+                  onTap: ()async {
+                    await Update();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      color: Colors.greenAccent[400],
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+                    margin: EdgeInsets.only(top: 20.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.refresh),
+                        Text("Refresh"),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ):Center(
           child: Image.asset("Assets/Images/nothingfound/nothing_found.png"),

@@ -17,7 +17,7 @@ class upload{
     info.organizerCode = res["orgmember"]["organisercode"];
     info.volunteerCode = res["orgmember"]["vollentiercode"];
     info.watcherCode = res["orgmember"]["watchercode"];
-    Saving.writefile(info);
+    await Saving.writefile(info);
     print(res["identity"]);
     return res["identity"];
   }

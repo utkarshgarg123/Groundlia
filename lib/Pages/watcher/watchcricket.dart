@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Scores/cricket_score.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/Listview.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -8,7 +9,7 @@ download dn = new download();
 
 class watchcricket extends StatefulWidget {
   LData data;
-  Map<dynamic,dynamic> Score = {};
+  CricketScore Score = new CricketScore();
   watchcricket(this.data, this.Score);
 
   @override
@@ -21,16 +22,16 @@ class _watchcricketState extends State<watchcricket> {
 
   @override
   void initState(){
-    dn.CricketScore(widget.data).then((value) => widget.Score.addAll(value));
-    print("here " + widget.Score["Game1"]["WhoWinToss"].toString());
-    number_of_games = widget.Score["Total Match"];
+//    dn.CricketScore(widget.data).then((value) => widget.Score.addAll(value));
+//    print("here " + widget.Score["Game1"]["WhoWinToss"].toString());
+//    number_of_games = widget.Score["Total Match"];
     super.initState();
   }
 
   Update(){
     setState(() async {
-      await dn.CricketScore(widget.data).then((value) => widget.Score.addAll(value));
-      print("here" + widget.Score["Game1"]["WhoWinToss"]);
+//      await dn.CricketScore(widget.data).then((value) => widget.Score.addAll(value));
+//      print("here" + widget.Score["Game1"]["WhoWinToss"]);
     });
   }
 
@@ -48,8 +49,8 @@ class _watchcricketState extends State<watchcricket> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-                Indicator(MediaQuery.of(context).size.width,"Organizer: "+widget.Score["Organizer"]),
-                Indicator(MediaQuery.of(context).size.width,"Location: " +widget.Score["Location"]),
+//                Indicator(MediaQuery.of(context).size.width,"Organizer: "+widget.Score["Organizer"]),
+//                Indicator(MediaQuery.of(context).size.width,"Location: " +widget.Score["Location"]),
                 Container(
                   margin: EdgeInsets.only(top: 10.0),
                   width: MediaQuery.of(context).size.width-40.0,
@@ -59,7 +60,8 @@ class _watchcricketState extends State<watchcricket> {
                     itemCount: number_of_games,
                     itemBuilder: (context, position){
                       print(position);
-                          return CricketEachGameScore(widget.Score["Game" + (position + 1).toString()],MediaQuery.of(context).size.width);
+                      return;
+//                          return CricketEachGameScore(widget.Score["Game" + (position + 1).toString()],MediaQuery.of(context).size.width);
                     },
                   ),
                 ),

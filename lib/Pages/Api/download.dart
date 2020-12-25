@@ -7,7 +7,6 @@ import 'package:groundlia/Pages/util/Data.dart';
 class download{
 
   Future<getCodes> GetAllCodes(SData data) async{
-//    https://ground-lia.herokuapp.com/organisers/hal/name@gmail.com/local
     String url = "https://ground-lia.herokuapp.com/organisers/" + data.name + "/" + data.mail + "/" + data.location;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
@@ -38,17 +37,20 @@ class download{
   }
 
   Future<Map<dynamic,dynamic>> BasketballScore(LData data) async{
-    String json = await rootBundle.loadString('Samplejson/Basketballscore.json');
-    Map gettingScore = jsonDecode(json);
-    print(gettingScore);
-    return gettingScore;
+    String url = "https://ground-lia.herokuapp.com/basketball/" + data.code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+//    print("body" + res.toString());
+    return res;
   }
-  Future<Map<dynamic,dynamic>> BadmintonScore(LData data) async{
-    String json = await rootBundle.loadString('Samplejson/Badmintonscore.json');
-    Map gettingScore = jsonDecode(json);
-    print(gettingScore);
-    return gettingScore;
 
+  Future<Map<dynamic,dynamic>> BadmintonScore(LData data) async{
+
+    String url = "https://ground-lia.herokuapp.com/badminton/" + data.code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+//    print("body" + res.toString());
+    return res;
   }
 
 }

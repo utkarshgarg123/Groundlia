@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/Scores/badminton_score.dart';
 
 Widget CricketEachGameScore(Map<dynamic,dynamic> ScoreCard, double width){
   return Container(
@@ -177,7 +178,7 @@ Widget CricketEachGameScore(Map<dynamic,dynamic> ScoreCard, double width){
   );
 }
 
-Widget BasketballEachGameScore(Map<dynamic,dynamic> ScoreCard, double width){
+Widget BasketballEachGameScore(var ScoreCard, double width){
   return Container(
       margin: EdgeInsets.only(top: 10.0,left: 5.0, right: 5.0,bottom: 10.0),
       width: width - 10.0,
@@ -187,81 +188,48 @@ Widget BasketballEachGameScore(Map<dynamic,dynamic> ScoreCard, double width){
       ),
       child: Column(
         children: [
-          Text(
-            "Winner is: " + ScoreCard["Winner"].toString(),
+          (ScoreCard.data.result  == "no")?Text(
+        "Game in Progress",
+        style: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.w500,
+        ),)
+      :Text(
+            "Winner is: " + ScoreCard.data.result,
             style: TextStyle(
                 fontSize: 25.0,
-                fontFamily: "mainfont"
+              fontWeight: FontWeight.w500,
             ),
           ),
           Text(
-            "Max Score: " + ScoreCard["Max Score"].toString(),
-            style: TextStyle(
-                fontSize: 25.0,
-                fontFamily: "mainfont"
-            ),
-          ),
-          Container(
-            color: Colors.red,
-            child: Text(
-              "Team 1: ",
-              style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: "mainfont"
-              ),
-            ),
-          ),
-          Text(
-            "Team 1 Score: " + ScoreCard["Team1"]["Score"].toString(),
+            "Team 1 Score: " + ScoreCard.data.teamA.score,
             style: TextStyle(
                 fontSize: 25.0,
                 fontFamily: "mainfont"
             ),
           ),
 
-          Container(
-            color: Colors.red,
-            child: Text(
-              "Team 2: ",
-              style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: "mainfont"
-              ),
-            ),
-          ),
           Text(
-            "Team 2 Score: " + ScoreCard["Team2"]["Score"].toString(),
+            "Team 2 Score: " + ScoreCard.data.teamB.score,
             style: TextStyle(
                 fontSize: 25.0,
                 fontFamily: "mainfont"
             ),
           ),
           Container(
-            color: Colors.red,
-            child: Text(
-              "Team Players Name:",
-              style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: "mainfont"
-              ),
-            ),
-          ),
-          Container(
             margin: EdgeInsets.only(top: 5.0),
-            color: Colors.yellow,
             child: Text(
               "Team 1",
               style: TextStyle(
                   fontSize: 25.0,
-                  fontFamily: "mainfont"
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
-          for(int i=1;i<3;i++) Container(
+          for(int i=0;i<ScoreCard.data.teamA.members.length;i++) Container(
             margin: EdgeInsets.only(bottom: 5.0),
-            color: Colors.yellow,
             child: Text(
-              ScoreCard["Team1"]["Members"]["Player"+ i.toString()].toString(),
+              ScoreCard.data.teamA.members[i],
               maxLines: 1,
               style: TextStyle(
                   fontSize: 25.0,
@@ -270,20 +238,18 @@ Widget BasketballEachGameScore(Map<dynamic,dynamic> ScoreCard, double width){
             ),
           ),
           Container(
-            color: Colors.pinkAccent,
             child: Text(
               "Team 2",
               style: TextStyle(
                   fontSize: 25.0,
-                  fontFamily: "mainfont"
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
-          for(int i=1;i<3;i++) Container(
+          for(int i=0;i<ScoreCard.data.teamB.members.length;i++) Container(
             margin: EdgeInsets.only(bottom: 5.0),
-            color: Colors.pinkAccent,
             child: Text(
-              ScoreCard["Team2"]["Members"]["Player" + i.toString()].toString(),
+              ScoreCard.data.teamB.members[i],
               maxLines: 1,
               style: TextStyle(
                   fontSize: 25.0,

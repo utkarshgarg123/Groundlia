@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:groundlia/Pages/Api/download.dart';
-import 'package:groundlia/Pages/Api/storing_locally.dart';
+import 'package:groundlia/Pages/Extra/loading_container.dart';
+import 'package:groundlia/Pages/Scores/badminton_score.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/Listview.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -10,7 +13,7 @@ download dn = new download();
 
 class watchbadminton extends StatefulWidget {
   LData data;
-  Map<dynamic,dynamic> Score = {};
+  BadmintonScore Score = new BadmintonScore();
   watchbadminton(this.data,this.Score);
 
   @override
@@ -18,27 +21,34 @@ class watchbadminton extends StatefulWidget {
 }
 
 class _watchbadmintonState extends State<watchbadminton> {
-  int number_of_games;
-  String organizer,location;
-  void asyncfunction (){
-    saving sav = new saving();
-    setState(() async {
-      await sav.readfile().then((value){organizer = value["name"]; location = value["location"];});
-    });
-  }
 
+  Timer time;
+  bool isloading = true;
   @override
   void initState(){
-    dn.BadmintonScore(widget.data).then((value) => widget.Score.addAll(value));
-    asyncfunction();
-    number_of_games = widget.Score["Total Match"];
+    time = new Timer.periodic(Duration(seconds: 10), (Timer t) => Update());
+  print(widget.Score.data.dataNew);
     super.initState();
   }
 
-  Update(){
-    setState(() async {
-      await dn.BadmintonScore(widget.data).then((value) => widget.Score.addAll(value));
+  @override
+  void dispose() {
+    time.cancel();
+    super.dispose();
+  }
+
+  void Update()async{
+    print("here");
+    download dn = download();
+    await dn.BadmintonScore(widget.data).then((value) {
+      widget.Score.dataelements(value["data"]["Team_A"]["Members"],
+          value["data"]["Team_A"]["Score"].toString(),
+          value["data"]["Team_B"]["Members"],
+          value["data"]["Team_B"]["Score"].toString(),
+          value["data"]["winner"].toString(),
+          value["data"]["new"].toString());
     });
+    setState((){isloading = false;});
   }
 
   @override
@@ -46,33 +56,27 @@ class _watchbadmintonState extends State<watchbadminton> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent[400],
-        title: Text("Basketball Score Updates"),
+        title: Text("Badminton Score Updates"),
       ),
 
-      body: Container(
+      body: (isloading)?loading_container():Container(
         width: MediaQuery.of(context).size.width,
-        child: (number_of_games >= 1)?Container(
+        child: (widget.Score.data.dataNew ==  "yes")?Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Indicator(MediaQuery.of(context).size.width,"Organizer: "+organizer),
-              Indicator(MediaQuery.of(context).size.width,"Location: " +location),
+              Indicator(MediaQuery.of(context).size.width,"Organizer: "+ widget.Score.organizer),
+              Indicator(MediaQuery.of(context).size.width,"Location: " + widget.Score.location),
               Container(
                 margin: EdgeInsets.only(top: 10.0),
                 width: MediaQuery.of(context).size.width-40.0,
                 height: MediaQuery.of(context).size.height-270,
                 color: Colors.blue,
-                child: ListView.builder(
-                  itemCount: number_of_games,
-                  itemBuilder: (context, position){
-                    print(position);
-                    return BasketballEachGameScore(widget.Score["Game" + (position + 1).toString()],MediaQuery.of(context).size.width);
-                  },
-                ),
+                child: Center(child: SingleChildScrollView(child: BasketballEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
               ),
               GestureDetector(
-                onTap: (){
-                  Update();
+                onTap: ()async {
+                  await Update();
                 },
                 child: Container(
                   padding: EdgeInsets.all(5.0),

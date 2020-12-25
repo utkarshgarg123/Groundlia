@@ -29,7 +29,7 @@ void main(){
 var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
-  "/signup" : (BuildContext context) => signup(),
+  "/signup" : (BuildContext context) => signup(data1),
   "/done" : (BuildContext context) => Done(data1),
   "/cricketedit" : (BuildContext context) => CricketScoreBoard(),
   "/startevent" : (BuildContext context) => Startevent(data2,codes,CODES),

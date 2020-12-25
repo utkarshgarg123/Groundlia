@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/Scores/basketball_score.dart';
@@ -216,10 +217,12 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                   onTap: () async {
                     setState(() {isloading = true;});
                     upload up = upload();
-                    await up.endbasketball(widget.data1.code);
+                    saving sv = new saving();
+                    await sv.readfile().then((value) async {
+                      await up.endbasketball(value["OrganizerCode"]);
+                    });
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/watchbasketball");
-                    setState(() {isloading = true;});
                   },
                   child: Container(
                     decoration: BoxDecoration(

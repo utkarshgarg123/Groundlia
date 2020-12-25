@@ -9,6 +9,9 @@ SData data2 = SData();
 getCodes codes = getCodes();
 
 class signup extends StatefulWidget {
+  LData data1;
+  signup(this.data1);
+
   @override
   _signupState createState() => _signupState();
 }
@@ -92,6 +95,7 @@ class _signupState extends State<signup> {
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
+                      widget.data1.code = codes.OrganizerCode;
                       print(codes.OrganizerCode);
                       print(codes.VolunteerCode);
                       print(codes.WatcherCode);

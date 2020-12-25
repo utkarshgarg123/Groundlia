@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/Scores/badminton_score.dart';
@@ -23,6 +24,10 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
   BadmintonScore Score = new BadmintonScore();
   final snackbar = SnackBar(
     content: Text("Updating . . ."),
+    duration: Duration(seconds: 2),
+  );
+  final endgame = SnackBar(
+    content: Text("Game Ends"),
     duration: Duration(seconds: 2),
   );
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -100,12 +105,22 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                       children: [
                         GestureDetector(
                           onTap: () async {
-                            setState(() {isloading = true;});
-                            upload up = upload();
-                            Score.data.teamA.score = (int.parse(Score.data.teamA.score)+1).toString();
-                            await up.updatebadminton(widget.data1.code, Score);
-                            _scaffoldKey.currentState.showSnackBar(snackbar);
-                            await Update();
+                            if(Score.data.result == "no") {
+                              setState(() {
+                                isloading = true;
+                              });
+                              upload up = upload();
+                              Score.data.teamA.score =
+                                  (int.parse(Score.data.teamA.score) + 1)
+                                      .toString();
+                              await up.updatebadminton(
+                                  widget.data1.code, Score);
+                              _scaffoldKey.currentState.showSnackBar(snackbar);
+                              await Update();
+                            }
+                            else{
+                              _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_up_rounded,size: 50.0,color: Colors.blue,)),
@@ -125,16 +140,27 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                         ),
                         GestureDetector(
                           onTap: () async {
-                            setState(() {isloading = true;});
-                            upload up = upload();
-                            Score.data.teamA.score = (int.parse(Score.data.teamA.score)-1).toString();
-                            if(int.parse(Score.data.teamA.score) < 0){
-                              Score.data.teamA.score = "0";
+                            if (Score.data.result == "no") {
+                              setState(() {
+                                isloading = true;
+                              });
+                              upload up = upload();
+                              Score.data.teamA.score =
+                                  (int.parse(Score.data.teamA.score) - 1)
+                                      .toString();
+                              if (int.parse(Score.data.teamA.score) < 0) {
+                                Score.data.teamA.score = "0";
+                              }
+                              await up.updatebadminton(
+                                  widget.data1.code, Score);
+                              _scaffoldKey.currentState.showSnackBar(snackbar);
+                              await Update();
                             }
-                            await up.updatebadminton(widget.data1.code, Score);
-                            _scaffoldKey.currentState.showSnackBar(snackbar);
-                            await Update();
+                            else{
+                            _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
+
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_down_rounded,size: 50.0,color: Colors.red,)),
                           ),
@@ -168,12 +194,17 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                       children: [
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamB.score = (int.parse(Score.data.teamB.score)+1).toString();
                             await up.updatebadminton(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                            _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_up_rounded,size: 50.0,color: Colors.blue,)),
@@ -193,6 +224,7 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                         ),
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamB.score = (int.parse(Score.data.teamB.score)-1).toString();
@@ -202,6 +234,10 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                             await up.updatebadminton(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                              _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_down_rounded,size: 50.0,color: Colors.red,)),
@@ -214,12 +250,20 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                 SizedBox(height: 30.0,),
                 GestureDetector(
                   onTap: () async {
+                    if(Score.data.result == "no") {
                     setState(() {isloading = true;});
                     upload up = upload();
-                    await up.endbadminton(widget.data1.code);
+                    saving sv = new saving();
+                    await sv.readfile().then((value) async {
+                      await up.endbadminton(value["OrganizerCode"]);
+                    });
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/watchbadminton");
                     setState(() {isloading = true;});
+                    }
+                    else{
+                      _scaffoldKey.currentState.showSnackBar(endgame);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(

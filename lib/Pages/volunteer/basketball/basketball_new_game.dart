@@ -63,7 +63,7 @@ class _BasketballNewGameState extends State<BasketballNewGame> {
                               players++;
                               Team1.add("");
                               Team2.add("");
-                              if(players > 13){players = 13;
+                              if(players > 9){players = 9;
                               Team1.removeLast();
                               Team2.removeLast();
                               }

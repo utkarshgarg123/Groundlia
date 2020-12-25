@@ -29,7 +29,21 @@ class _SelectSportState extends State<SelectSport> {
           isloading = true;
         });
         if(name == "Cricket"){
-          Navigator.pushNamed(context, "/playCricket");
+          saving sv = saving();
+          await sv.readfile().then((value) async {
+            print("value" + value.toString());
+            if(await dn.Cricketnewgame(value["OrganizerCode"])){
+              setState(() {
+                isloading = false;
+              });
+              Navigator.pushNamed(context, "/newcricket");
+            }else{
+              setState(() {
+                isloading = false;
+              });
+              Navigator.pushNamed(context, "/updatecricket");
+            }
+          });
         }
         else if(name == "Basketball"){
           saving sv = saving();

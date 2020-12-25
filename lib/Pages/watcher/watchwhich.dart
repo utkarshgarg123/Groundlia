@@ -51,8 +51,28 @@ class _watchwhichState extends State<watchwhich> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    await dn.CricketScore(widget.data).then((value) {
-
+                    setState(() {
+                      isloading = true;
+                    });
+                    badminonScore = new BadmintonScore();
+                    await dn.CricketScore(widget.data).then((value){
+                      cricketScore.dataelements(value["data"]["Team_A"]["Members"],
+                        value["data"]["Team_A"]["Runs"].toString(),
+                        value["data"]["Team_B"]["Members"],
+                        value["data"]["Team_B"]["Runs"].toString(),
+                        value["data"]["winner"].toString(),
+                        value["data"]["new"].toString(),
+                        value["data"]["Team_A"]["Wickets"].toString(),
+                        value["data"]["Team_B"]["Wickets"].toString(),
+                        value["data"]["Team_A"]["Mode"].toString(),
+                        value["data"]["Team_B"]["Mode"].toString());
+                      saving sav = new saving();
+                      sav.readfile().then((val) {
+                        cricketScore.orandlo(val["name"].toString(), val["location"].toString());
+                      });
+                    });
+                    setState(() {
+                      isloading = false;
                     });
                     Navigator.pushNamed(context, "/watchcricket");
                   },

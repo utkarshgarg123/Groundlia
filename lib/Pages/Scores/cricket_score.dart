@@ -1,71 +1,48 @@
 class CricketScore {
-  CricketScore({
-    this.organizer,
-    this.location,
-    this.data,
-  });
 
   String organizer;
   String location;
-  Data data;
+  Data data = new Data();
 
-  factory CricketScore.fromJson(Map<String, dynamic> json) => CricketScore(
-    organizer: json["organizer"],
-    location: json["location"],
-    data: Data.fromJson(json["data"]),
-  );
+  void orandlo(String organizer,String location){
+    this.organizer = organizer;
+    this.location = location;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "organizer": organizer,
-    "location": location,
-    "data": data.toJson(),
-  };
+  void dataelements(var member1,String score1,var member2,String score2,String result,String datanew,String wicket1,String wicket2,String mode1,String mode2){
+    this.data.elemnts(member1,score1,member2,score2,result,datanew,wicket1,wicket2,mode1,mode2);
+  }
+
 }
 
 class Data {
-  Data({
-    this.teamA,
-    this.teamB,
-    this.result,
-    this.dataNew,
-  });
 
-  Team teamA;
-  Team teamB;
+  Team teamA = new Team();
+  Team teamB = new Team();
   String result;
   String dataNew;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    teamA: Team.fromJson(json["Team_A"]),
-    teamB: Team.fromJson(json["Team_B"]),
-    result: json["result"],
-    dataNew: json["new"],
-  );
+  void elemnts(var member1,String score1, var member2,String score2,String result,String datanew,String wicket1,String wicket2,String mode1,String mode2){
+    this.result= result;
+    this.dataNew = datanew;
+    this.teamA.elments(member1, score1, wicket1, mode1);
+    this.teamB.elments(member2, score2, wicket1, mode1);
+  }
 
-  Map<String, dynamic> toJson() => {
-    "Team_A": teamA.toJson(),
-    "Team_B": teamB.toJson(),
-    "result": result,
-    "new": dataNew,
-  };
 }
 
 class Team {
-  Team({
-    this.members,
-    this.score,
-  });
 
-  List<dynamic> members;
-  String score;
+  var members = List();
+  String runs;
+  String wicket;
+  String mode;
 
-  factory Team.fromJson(Map<String, dynamic> json) => Team(
-    members: List<dynamic>.from(json["Members"].map((x) => x)),
-    score: json["Score"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "Members": List<dynamic>.from(members.map((x) => x)),
-    "Score": score,
-  };
+  void elments(var m,String r,String w,String mode){
+    this.members.clear();
+    this.members.addAll(m);
+    this.runs = r;
+    this.wicket = w;
+    this.mode = mode;
+  }
 }

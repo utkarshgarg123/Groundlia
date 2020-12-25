@@ -48,8 +48,44 @@ class upload{
     print(response.body);
   }
 
+  Future<void> createcricket(String code, List<String> team1, List<String> team2, String mode1, String mode2) async {
+    print("team1: " + team1.toString());
+    print("team2: " + team2.toString());
+    String url = "https://ground-lia.herokuapp.com/cricket/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": team1,
+          "Runs": 0,
+          "Wickets": 0,
+          "Mode": mode1
+        },
+        "Team_B": {
+          "Members": team2,
+          "Runs": 0,
+          "Wickets": 0,
+          "Mode": mode2
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
   Future<void> endbadminton(String code)async{
     String url = "https://ground-lia.herokuapp.com/badminton/endresult/" + code;
+    var response = await http.get(url);
+    print("endres" + response.toString());
+  }
+
+  Future<void> endcricket(String code)async{
+    String url = "https://ground-lia.herokuapp.com/cricket/endresult/" + code;
     var response = await http.get(url);
     print("endres" + response.toString());
   }
@@ -77,6 +113,34 @@ class upload{
         "Team_B": {
           "Members": Score.data.teamB.members,
           "Score": int.parse(Score.data.teamB.score)
+        }
+      }),
+    );
+
+    print(response.body);
+  }
+
+  Future<void> updatecricket(String code,var Score) async {
+    String url = "https://ground-lia.herokuapp.com/badminton/update/" + code + "/no/no";
+    var response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "winner": "no",
+        "new": "no",
+        "Team_A": {
+          "Members": Score.data.teamA.members,
+          "Runs": int.parse(Score.data.teamA.run),
+          "Wickets": int.parse(Score.data.teamA.wicket),
+          "Mode": Score.data.teamA.mode
+        },
+        "Team_B": {
+          "Members": Score.data.teamB.members,
+          "Runs": int.parse(Score.data.teamA.run),
+          "Wickets": int.parse(Score.data.teamA.wicket),
+          "Mode": Score.data.teamA.mode
         }
       }),
     );

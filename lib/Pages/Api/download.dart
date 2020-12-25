@@ -30,10 +30,11 @@ class download{
   }
 
   Future<Map<dynamic,dynamic>> CricketScore(LData data) async{
-    String json = await rootBundle.loadString('Samplejson/Cricketscore.json');
-    Map gettingScore = jsonDecode(json);
-    print(gettingScore);
-    return gettingScore;
+    String url = "https://ground-lia.herokuapp.com/cricket/" + data.code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+//    print("body" + res.toString());
+    return res;
   }
 
   Future<Map<dynamic,dynamic>> BasketballScore(LData data) async{
@@ -56,6 +57,16 @@ class download{
   Future<bool> Badmintonnewgame(String code) async{
     print(code);
     String url = "https://ground-lia.herokuapp.com/badminton/" + code;
+    var response = await http.get(url);
+    Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
+    print(res.toString());
+    if(res["data"]["new"] == "yes") return true;
+    else return false;
+  }
+
+  Future<bool> Cricketnewgame(String code) async{
+    print(code);
+    String url = "https://ground-lia.herokuapp.com/cricket/" + code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
     print(res.toString());

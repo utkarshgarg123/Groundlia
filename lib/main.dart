@@ -11,6 +11,8 @@ import 'package:groundlia/Pages/volunteer/badminton/badminton_new_game.dart';
 import 'package:groundlia/Pages/volunteer/badminton/badminton_update_score.dart';
 import 'package:groundlia/Pages/volunteer/basketball/Basketball_update_score.dart';
 import 'package:groundlia/Pages/volunteer/basketball/basketball_new_game.dart';
+import 'package:groundlia/Pages/volunteer/cricket/cricket_new_game.dart';
+import 'package:groundlia/Pages/volunteer/cricket/cricket_update_score.dart';
 import 'package:groundlia/Pages/watcher/watchbadminton.dart';
 import 'package:groundlia/Pages/watcher/watchbasketball.dart';
 import 'package:groundlia/Pages/watcher/watchcricket.dart';
@@ -43,6 +45,8 @@ var routes = <String,WidgetBuilder>{
   "/updatebadminton": (BuildContext context)=> BadmintonUpdateScore(data1,data2),
   "/newbasketball": (BuildContext context) => BasketballNewGame(data1,data2),
   "/updatebasketball": (BuildContext context)=> BasketballUpdateScore(data1,data2),
+  "/newcricket": (BuildContext context) => CricketNewGame(data1,data2),
+  "/updatecricket": (BuildContext context)=> CricketUpdateScore(data1,data2),
 };
 
 class StartTheApp extends StatefulWidget {

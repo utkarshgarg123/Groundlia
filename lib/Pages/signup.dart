@@ -37,7 +37,6 @@ class _signupState extends State<signup> {
           Container(
             width: MediaQuery.of(context).size.width - 200,
             child: TextField(
-              maxLength: (symbol != "mail")?20:40,
               decoration: InputDecoration(
                 hintText: hint,
               ),

@@ -268,7 +268,7 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                       await up.endbadminton(value["OrganizerCode"]);
                     });
                     Navigator.of(context).pop(true);
-                    Navigator.pushNamed(context, "/watchbadminton");
+                    Navigator.pushNamed(context, "/updatebadminton");
                     setState(() {isloading = true;});
                     }
                     else{

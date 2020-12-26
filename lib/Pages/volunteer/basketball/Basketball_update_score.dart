@@ -26,6 +26,10 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
     content: Text("Updating . . ."),
     duration: Duration(seconds: 2),
   );
+  final endgame = SnackBar(
+    content: Text("Game Ends"),
+    duration: Duration(seconds: 2),
+  );
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -106,12 +110,17 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                       children: [
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamA.score = (int.parse(Score.data.teamA.score)+1).toString();
                             await up.updatebasketball(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                              _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_up_rounded,size: 50.0,color: Colors.blue,)),
@@ -131,6 +140,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                         ),
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamA.score = (int.parse(Score.data.teamA.score)-1).toString();
@@ -140,6 +150,10 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                             await up.updatebasketball(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                            _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_down_rounded,size: 50.0,color: Colors.red,)),
@@ -179,12 +193,17 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                       children: [
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamB.score = (int.parse(Score.data.teamB.score)+1).toString();
                             await up.updatebasketball(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                              _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_up_rounded,size: 50.0,color: Colors.blue,)),
@@ -204,6 +223,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                         ),
                         GestureDetector(
                           onTap: () async {
+                            if(Score.data.result == "no") {
                             setState(() {isloading = true;});
                             upload up = upload();
                             Score.data.teamB.score = (int.parse(Score.data.teamB.score)-1).toString();
@@ -213,6 +233,10 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                             await up.updatebasketball(widget.data1.code, Score);
                             _scaffoldKey.currentState.showSnackBar(snackbar);
                             await Update();
+                            }
+                            else{
+                              _scaffoldKey.currentState.showSnackBar(endgame);
+                            }
                           },
                           child: Container(
                             child: Center(child: Icon(Icons.arrow_circle_down_rounded,size: 50.0,color: Colors.red,)),
@@ -225,6 +249,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                 SizedBox(height: 30.0,),
                 GestureDetector(
                   onTap: () async {
+                    if(Score.data.result == "no") {
                     setState(() {isloading = true;});
                     upload up = upload();
                     saving sv = new saving();
@@ -232,7 +257,11 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                       await up.endbasketball(value["OrganizerCode"]);
                     });
                     Navigator.of(context).pop(true);
-                    Navigator.pushNamed(context, "/watchbasketball");
+                    Navigator.pushNamed(context, "/updatebasketball");
+                    }
+                    else{
+                      _scaffoldKey.currentState.showSnackBar(endgame);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(

@@ -186,6 +186,8 @@ class _ShowScoreState extends State<ShowScore> {
             saving sv = new saving();
             await sv.readfile().then((value) {
               up.endcricket(value["OrganizerCode"]);
+              Navigator.of(context).pop(true);
+              Navigator.pushNamed(context, "updatecricket");
             });
           }
           else if (text == "Wide") {

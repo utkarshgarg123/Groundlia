@@ -12,6 +12,7 @@ Widget CricketEachGameScore(CricketScore ScoreCard, double width){
       ),
       child: Column(
         children: [
+          SizedBox(height: 15.0,),
           (ScoreCard.data.result  == "no")?Text(
             "Game in Progress",
             style: TextStyle(
@@ -26,7 +27,7 @@ Widget CricketEachGameScore(CricketScore ScoreCard, double width){
             ),
           ),
           Text(
-            "Team 1 Score: " + ScoreCard.data.teamA.runs + "/" + ScoreCard.data.teamB.wicket,
+            "Team 1 Score: " + ScoreCard.data.teamA.runs + "/" + ScoreCard.data.teamA.wicket,
             style: TextStyle(
                 fontSize: 23.0,
                 fontFamily: "mainfont"
@@ -40,6 +41,15 @@ Widget CricketEachGameScore(CricketScore ScoreCard, double width){
                 fontFamily: "mainfont"
             ),
           ),
+
+          Text(
+            "Overs: " + ScoreCard.data.overs,
+            style: TextStyle(
+                fontSize: 23.0,
+                fontFamily: "mainfont"
+            ),
+          ),
+
           Container(
             margin: EdgeInsets.only(top: 5.0),
             child: Text(
@@ -60,7 +70,7 @@ Widget CricketEachGameScore(CricketScore ScoreCard, double width){
                   for(int i=0;i<ScoreCard.data.teamA.members.length;i++)Container(
                     margin: EdgeInsets.only(left: 20.0),
                     child: Text(
-                      ScoreCard.data.teamA.members[i],
+                      ScoreCard.data.teamA.members[i] + ", ",
                       maxLines: 1,
                       style: TextStyle(
                           fontSize: 25.0,
@@ -90,22 +100,22 @@ Widget CricketEachGameScore(CricketScore ScoreCard, double width){
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for(int i=0;i<ScoreCard.data.teamA.members.length;i++)Container(
+                    for(int i=0;i<ScoreCard.data.teamA.members.length;i++)(Container(
                       margin: EdgeInsets.only(left: 20.0),
                       child: Text(
-                        ScoreCard.data.teamB.members[i],
+                        ScoreCard.data.teamB.members[i] + ",",
                         maxLines: 1,
                         style: TextStyle(
                             fontSize: 25.0,
                             fontFamily: "mainfont"
                         ),
                       ),
-                    ),
+                    ))
                   ],
                 )
             ),
           ),
-
+          SizedBox(height: 15.0,),
         ],
       )
   );

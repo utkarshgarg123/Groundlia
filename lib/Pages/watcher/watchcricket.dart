@@ -47,7 +47,9 @@ class _watchcricketState extends State<watchcricket> {
         value["data"]["Team_A"]["Wickets"].toString(),
         value["data"]["Team_B"]["Wickets"].toString(),
         value["data"]["Team_A"]["Mode"],
-        value["data"]["Team_B"]["Mode"]);
+        value["data"]["Team_B"]["Mode"],
+        value["data"]["overs"],
+      );
     });
     setState(() {isloading = false;});
   }
@@ -77,6 +79,9 @@ class _watchcricketState extends State<watchcricket> {
               ),
               GestureDetector(
                 onTap: ()async {
+                  setState(() {
+                    isloading = true;
+                  });
                   await Update();
                 },
                 child: Container(

@@ -64,8 +64,10 @@ class _watchwhichState extends State<watchwhich> {
                         value["data"]["new"].toString(),
                         value["data"]["Team_A"]["Wickets"].toString(),
                         value["data"]["Team_B"]["Wickets"].toString(),
-                        value["data"]["Team_A"]["Mode"].toString(),
-                        value["data"]["Team_B"]["Mode"].toString());
+                        value["data"]["Team_A"]["Mode"],
+                        value["data"]["Team_B"]["Mode"],
+                        value["data"]["overs"]
+                      );
                       saving sav = new saving();
                       sav.readfile().then((val) {
                         cricketScore.orandlo(val["name"].toString(), val["location"].toString());

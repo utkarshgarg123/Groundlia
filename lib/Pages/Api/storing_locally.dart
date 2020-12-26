@@ -71,7 +71,7 @@ class saving{
       String fromjson;
       await file.readAsString().then((value) => fromjson = value);
       Map<dynamic, dynamic> datastored = Map<dynamic, dynamic>.from(jsonDecode(fromjson));
-      print("fromjson:" + datastored["name"]);
+//      print("fromjson:" + datastored["name"]);
       return datastored;
     } catch (e) {
       Map m  = {};

@@ -222,6 +222,7 @@ class _CricketNewGameState extends State<CricketNewGame> {
                 GestureDetector(
                   onTap: () async {
                     upload up = new upload();
+                    print(mode1 + mode2);
                     if (widget.data1.code != "") {
                       await up.createcricket(
                           widget.data1.code, Team1, Team2, mode1, mode2);

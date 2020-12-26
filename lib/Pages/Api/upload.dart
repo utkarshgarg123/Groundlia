@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:groundlia/Pages/Api/storing_locally.dart';
+import 'package:groundlia/Pages/Scores/cricket_score.dart';
 import 'package:http/http.dart' as http;
 import 'package:groundlia/Pages/util/Data.dart';
 
@@ -49,8 +50,7 @@ class upload{
   }
 
   Future<void> createcricket(String code, List<String> team1, List<String> team2, String mode1, String mode2) async {
-    print("team1: " + team1.toString());
-    print("team2: " + team2.toString());
+    print("in create cricket: " + mode1 + mode2);
     String url = "https://ground-lia.herokuapp.com/cricket/update/" + code + "/no/no";
     var response = await http.post(
       url,
@@ -60,6 +60,7 @@ class upload{
       body: jsonEncode(<String, dynamic>{
         "winner": "no",
         "new": "no",
+        "overs": "0.0",
         "Team_A": {
           "Members": team1,
           "Runs": 0,
@@ -120,8 +121,8 @@ class upload{
     print(response.body);
   }
 
-  Future<void> updatecricket(String code,var Score) async {
-    String url = "https://ground-lia.herokuapp.com/badminton/update/" + code + "/no/no";
+  Future<void> updatecricket(String code,CricketScore Score) async {
+    String url = "https://ground-lia.herokuapp.com/cricket/update/" + code + "/no/no";
     var response = await http.post(
       url,
       headers: <String, String>{
@@ -130,22 +131,23 @@ class upload{
       body: jsonEncode(<String, dynamic>{
         "winner": "no",
         "new": "no",
+        "overs": Score.data.overs,
         "Team_A": {
           "Members": Score.data.teamA.members,
-          "Runs": int.parse(Score.data.teamA.run),
+          "Runs": int.parse(Score.data.teamA.runs),
           "Wickets": int.parse(Score.data.teamA.wicket),
           "Mode": Score.data.teamA.mode
         },
         "Team_B": {
           "Members": Score.data.teamB.members,
-          "Runs": int.parse(Score.data.teamA.run),
-          "Wickets": int.parse(Score.data.teamA.wicket),
-          "Mode": Score.data.teamA.mode
+          "Runs": int.parse(Score.data.teamB.runs),
+          "Wickets": int.parse(Score.data.teamB.wicket),
+          "Mode": Score.data.teamB.mode
         }
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
   Future<void> updatebasketball(String code,var Score) async {

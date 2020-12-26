@@ -84,17 +84,22 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                       children: [
                         SizedBox(height: 20.0,),
                         Text("Team1: ",style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.greenAccent[400],
                         ),),
-                        for(int i=0;i<Score.data.teamA.members.length;i++)Text(
-                          Score.data.teamA.members[i],
-                          style: TextStyle(
-                            fontFamily: "mainfont",
-                            fontSize: 30.0,
-                            color: Colors.greenAccent[400],
-                          ),),
+                        for(int i=0;i<Score.data.teamA.members.length;i++)Container(
+                          constraints: BoxConstraints(maxWidth: 170),
+                          child: Center(
+                            child: Text(
+                              Score.data.teamA.members[i],
+                              style: TextStyle(
+                                fontFamily: "mainfont",
+                                fontSize: 15.0,
+                                color: Colors.greenAccent[400],
+                              ),),
+                          ),
+                        ),
                       ],
                     ),
                     Column(
@@ -152,17 +157,22 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                       children: [
                         SizedBox(height: 20.0,),
                         Text("Team2: ",style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.greenAccent[400],
                         ),),
-                        for(int i=0;i<Score.data.teamB.members.length;i++)Text(
-                          Score.data.teamB.members[i],
-                          style: TextStyle(
-                            fontFamily: "mainfont",
-                            fontSize: 30.0,
-                            color: Colors.greenAccent[400],
-                          ),),
+                        for(int i=0;i<Score.data.teamB.members.length;i++)Container(
+                          constraints: BoxConstraints(maxWidth: 170),
+                          child: Center(
+                            child: Text(
+                              Score.data.teamB.members[i],
+                              style: TextStyle(
+                                fontFamily: "mainfont",
+                                fontSize: 15.0,
+                                color: Colors.greenAccent[400],
+                              ),),
+                          ),
+                        ),
                       ],
                     ),
                     Column(

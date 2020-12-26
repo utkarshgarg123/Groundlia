@@ -33,7 +33,7 @@ class download{
     String url = "https://ground-lia.herokuapp.com/cricket/" + data.code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
-    print("body" + res.toString());
+//    print("body" + res.toString());
     return res;
   }
 
@@ -41,7 +41,7 @@ class download{
     String url = "https://ground-lia.herokuapp.com/basketball/" + data.code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
-    print("body" + res.toString());
+//    print("body" + res.toString());
     return res;
   }
 
@@ -50,7 +50,7 @@ class download{
     String url = "https://ground-lia.herokuapp.com/badminton/" + data.code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
-    print("body" + res.toString());
+//    print("body" + res.toString());
     return res;
   }
 
@@ -59,7 +59,7 @@ class download{
     String url = "https://ground-lia.herokuapp.com/badminton/" + code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
-    print(res.toString());
+//    print(res.toString());
     if(res["data"]["new"] == "yes") return true;
     else return false;
   }
@@ -69,7 +69,7 @@ class download{
     String url = "https://ground-lia.herokuapp.com/cricket/" + code;
     var response = await http.get(url);
     Map<dynamic, dynamic> res = jsonDecode(response.body.toString());
-    print(res.toString());
+//    print(res.toString());
     if(res["data"]["new"] == "yes") return true;
     else return false;
   }

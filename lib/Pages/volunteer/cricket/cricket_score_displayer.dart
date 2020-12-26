@@ -99,30 +99,43 @@ class _ShowScoreState extends State<ShowScore> {
     );
   }
 
+  void gameends(BuildContext context) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Game Ends Cant change the score'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
   GestureDetector runs(int runs, var color, var t){
     return GestureDetector(
       onTap: ()async {
-        setState(() {
-          isloading = true;
-        });
-        t.runs = (int.parse(t.runs) + runs).toString();
-        print("runs: " + t.runs);
-        var o = double.tryParse(widget.score.data.overs);
-        o += 0.1;
-        if(((o%1)*10).round() == 6){
-          o -= 0.6;
-          o += 1;
+        if(widget.score.data.result == "no") {
+          setState(() {
+            isloading = true;
+          });
+          t.runs = (int.parse(t.runs) + runs).toString();
+          print("runs: " + t.runs);
+          var o = double.tryParse(widget.score.data.overs);
+          o += 0.1;
+          if (((o % 1) * 10).round() == 6) {
+            o -= 0.6;
+            o += 1;
+          }
+          print("overs: " + o.toStringAsFixed(1));
+          widget.score.data.overs = o.toStringAsFixed(1);
+          upload up = new upload();
+          saving sv = new saving();
+          await sv.readfile().then((value) {
+            up.updatecricket(value["OrganizerCode"], widget.score);
+          }).then((value) => showDefaultSnackbar(context));
+          setState(() {
+            Update();
+          });
+        }else{
+          gameends(context);
         }
-        print("overs: " + o.toStringAsFixed(1));
-        widget.score.data.overs = o.toStringAsFixed(1);
-        upload up = new upload();
-        saving sv = new saving();
-        await sv.readfile().then((value) {
-          up.updatecricket(value["OrganizerCode"], widget.score);
-        }).then((value) => showDefaultSnackbar(context));
-        setState(() {
-          Update();
-        });
       },
       child: Container(
         margin: EdgeInsets.all(5.0),
@@ -145,49 +158,58 @@ class _ShowScoreState extends State<ShowScore> {
   GestureDetector Specialruns(String text, var color, var team){
     return GestureDetector(
       onTap: ()async {
-        if(text == "Wicket"){
-          setState(() {
-            isloading = true;
-          });
-          var o = double.tryParse(widget.score.data.overs);
-          o += 0.1;
-          if(((o%1)*10).round() == 6){
-            o -= 0.6;
-            o += 1;
+        if(widget.score.data.result == "no") {
+          if (text == "Wicket") {
+            setState(() {
+              isloading = true;
+            });
+            var o = double.tryParse(widget.score.data.overs);
+            o += 0.1;
+            if (((o % 1) * 10).round() == 6) {
+              o -= 0.6;
+              o += 1;
+            }
+            print("overs: " + o.toStringAsFixed(1));
+            widget.score.data.overs = o.toStringAsFixed(1);
+            team.wicket = (int.parse(team.wicket) + 1).toString();
+            upload up = new upload();
+            saving sv = new saving();
+            await sv.readfile().then((value) {
+              up.updatecricket(value["OrganizerCode"], widget.score);
+            }).then((value) => showDefaultSnackbar(context));
+            setState(() {
+              Update();
+            });
           }
-          print("overs: " + o.toStringAsFixed(1));
-          widget.score.data.overs = o.toStringAsFixed(1);
-          team.wicket = (int.parse(team.wicket) + 1).toString();
-          upload up = new upload();
-          saving sv = new saving();
-          await sv.readfile().then((value) {
-            up.updatecricket(value["OrganizerCode"], widget.score);
-          }).then((value) => showDefaultSnackbar(context));
-          setState(() {
-            Update();
-          });
-        } else if(text == "Wide"){
-              setState(() {
-                send_score = 0;
-                isediting = !isediting;
-                iswide = true;
-              });
-        } else if(text == "No Ball"){
-          setState(() {
-            send_score = 0;
-            isediting = !isediting;
-            iswide = false;
-          });
-        } else if(text == "Change Position"){
-          print("here");
-          print(rivalteam.runs);
-            if(rivalteam.runs == "0"){
+          else if (text == "Game Over") {
+            upload up = new upload();
+            saving sv = new saving();
+            await sv.readfile().then((value) {
+              up.endcricket(value["OrganizerCode"]);
+            });
+          }
+          else if (text == "Wide") {
+            setState(() {
+              send_score = 0;
+              isediting = !isediting;
+              iswide = true;
+            });
+          } else if (text == "No Ball") {
+            setState(() {
+              send_score = 0;
+              isediting = !isediting;
+              iswide = false;
+            });
+          } else if (text == "Change Position") {
+            print("here");
+            print(rivalteam.runs);
+            if (rivalteam.runs == "0") {
               setState(() {
                 isloading = true;
               });
-                team.mode = "bolling";
-                rivalteam.mode = "batting";
-                widget.score.data.overs = "0.0";
+              team.mode = "bolling";
+              rivalteam.mode = "batting";
+              widget.score.data.overs = "0.0";
               upload up = new upload();
               saving sv = new saving();
               await sv.readfile().then((value) {
@@ -200,13 +222,16 @@ class _ShowScoreState extends State<ShowScore> {
               widget.onCallBack();
               Navigator.of(context).pop(true);
               Navigator.pushNamed(context, "/updatecricket");
-            }else{
+            } else {
               showfinalSnackbar(context);
             }
-        }else if (text == "Change Score Manually"){
-          setState(() {
-            ismanuallychange = !ismanuallychange;
-          });
+          } else if (text == "Change Score Manually") {
+            setState(() {
+              ismanuallychange = !ismanuallychange;
+            });
+          }
+        }else{
+          gameends(context);
         }
       },
 
@@ -469,6 +494,8 @@ class _ShowScoreState extends State<ShowScore> {
             ],
           ),
         ):Container(),
+
+        Specialruns("Game Over", Colors.red,team),
       ],
     );
   }

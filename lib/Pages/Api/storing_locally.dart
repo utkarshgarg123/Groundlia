@@ -58,7 +58,7 @@ class saving{
     try{
       final file = await adminfile();
       String tojson = await jsonEncode(name);
-      print("tojson: $tojson");
+//      print("tojson: $tojson");
       await file.writeAsString(tojson);
     }catch(e){
       print("errorwritting: #e");

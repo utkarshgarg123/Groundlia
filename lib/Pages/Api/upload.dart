@@ -19,13 +19,13 @@ class upload{
     info.volunteerCode = res["orgmember"]["vollentiercode"];
     info.watcherCode = res["orgmember"]["watchercode"];
     await Saving.writefile(info);
-    print(res["identity"]);
+//    print(res["identity"]);
     return res["identity"];
   }
 
   Future<void> createbadminton(String code,int players, List<String> team1, List<String> team2) async {
-    print("team1: " + team1.toString());
-    print("team2: " + team2.toString());
+//    print("team1: " + team1.toString());
+//    print("team2: " + team2.toString());
     String url = "https://ground-lia.herokuapp.com/badminton/update/" + code + "/no/no";
     var response = await http.post(
       url,
@@ -46,7 +46,7 @@ class upload{
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
   Future<void> createcricket(String code, List<String> team1, List<String> team2, String mode1, String mode2) async {
@@ -76,13 +76,13 @@ class upload{
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
   Future<void> endbadminton(String code)async{
     String url = "https://ground-lia.herokuapp.com/badminton/endresult/" + code;
     var response = await http.get(url);
-    print("endres" + response.toString());
+//    print("endres" + response.toString());
   }
 
   Future<void> endcricket(String code)async{
@@ -94,7 +94,7 @@ class upload{
   Future<void> endbasketball(String code)async{
     String url = "https://ground-lia.herokuapp.com/basketball/endresult/" + code;
     var response = await http.get(url);
-    print("endres" + response.toString());
+//    print("endres" + response.toString());
   }
 
   Future<void> updatebadminton(String code,var Score) async {
@@ -118,7 +118,7 @@ class upload{
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
   Future<void> updatecricket(String code,CricketScore Score) async {
@@ -171,7 +171,7 @@ class upload{
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
 
@@ -199,7 +199,7 @@ class upload{
       }),
     );
 
-    print(response.body);
+//    print(response.body);
   }
 
 }

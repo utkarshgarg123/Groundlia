@@ -4,6 +4,7 @@
 A new Flutter application which provide the Userfriendly Interface to organise an sports event in an organised way.
 - [Backend repo](https://github.com/cosmoimai/Groundlia-backend)
 - [Your Review Matters](https://forms.gle/ndQYyVSoC3GtMdJL9)
+- [Walkthrough of the application](https://www.youtube.com/watch?v=wSOCIRu7ZhE)
 
 # LICESNSE
 

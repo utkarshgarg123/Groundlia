@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Extra/loading_container.dart';
+import 'package:groundlia/Pages/Scores/basketball_score.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/Listview.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -8,7 +12,7 @@ download dn = new download();
 
 class watchbasketball extends StatefulWidget {
   LData data;
-  Map<dynamic,dynamic> Score = {};
+  BasketballScore Score = new BasketballScore();
   watchbasketball(this.data,this.Score);
 
   @override
@@ -16,19 +20,31 @@ class watchbasketball extends StatefulWidget {
 }
 
 class _watchbasketballState extends State<watchbasketball> {
-  int number_of_games;
-
+  Timer time;
+  bool isloading = true;
   @override
   void initState(){
-    dn.BasketballScore(widget.data).then((value) => widget.Score.addAll(value));
-    number_of_games = widget.Score["Total Match"];
+    time = new Timer.periodic(Duration(seconds: 5), (Timer t) => Update());
     super.initState();
   }
 
-  Update(){
-    setState(() async {
-      await dn.BasketballScore(widget.data).then((value) => widget.Score.addAll(value));
+  @override
+  void dispose() {
+    time.cancel();
+    super.dispose();
+  }
+
+  Update() async {
+    download dn = download();
+    await dn.BasketballScore(widget.data).then((value) {
+      widget.Score.dataelements(value["data"]["Team_A"]["Members"],
+          value["data"]["Team_A"]["Score"].toString(),
+          value["data"]["Team_B"]["Members"],
+          value["data"]["Team_B"]["Score"].toString(),
+          value["data"]["winner"].toString(),
+          value["data"]["new"].toString());
     });
+    setState(() {isloading = false;});
   }
 
   @override
@@ -39,30 +55,24 @@ class _watchbasketballState extends State<watchbasketball> {
         title: Text("Basketball Score Updates"),
       ),
 
-      body: Container(
+      body: (isloading)?loading_container():Container(
         width: MediaQuery.of(context).size.width,
-        child: (number_of_games >= 1)?Container(
+        child: (widget.Score.data.dataNew ==  "no")?Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Indicator(MediaQuery.of(context).size.width,"Organizer: "+widget.Score["Organizer"]),
-              Indicator(MediaQuery.of(context).size.width,"Location: " +widget.Score["Location"]),
+              Indicator(MediaQuery.of(context).size.width,"Organizer: "+ widget.Score.organizer),
+              Indicator(MediaQuery.of(context).size.width,"Location: " + widget.Score.location),
               Container(
-                margin: EdgeInsets.only(top: 10.0),
-                width: MediaQuery.of(context).size.width-40.0,
-                height: MediaQuery.of(context).size.height-270,
-                color: Colors.blue,
-                child: ListView.builder(
-                  itemCount: number_of_games,
-                  itemBuilder: (context, position){
-                    print(position);
-                    return BasketballEachGameScore(widget.Score["Game" + (position + 1).toString()],MediaQuery.of(context).size.width);
-                  },
-                ),
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: MediaQuery.of(context).size.width-40.0,
+                  height: MediaQuery.of(context).size.height-270,
+                  color: Colors.blue,
+                  child: Center(child: SingleChildScrollView(child: BasketballEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
               ),
               GestureDetector(
-                onTap: (){
-                  Update();
+                onTap: ()async {
+                  await Update();
                 },
                 child: Container(
                   padding: EdgeInsets.all(5.0),

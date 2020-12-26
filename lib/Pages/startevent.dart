@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -5,7 +7,8 @@ import 'package:groundlia/Pages/util/widget.dart';
 class Startevent extends StatefulWidget {
   SData data;
   getCodes codes;
-  Startevent(this.data, this.codes);
+  getCodes CODES;
+  Startevent(this.data, this.codes,this.CODES);
 
   @override
   _StarteventState createState() => _StarteventState();
@@ -14,11 +17,20 @@ class Startevent extends StatefulWidget {
 class _StarteventState extends State<Startevent> {
 
   getCodes Showcodes = getCodes();
+  Timer time;
 
   @override
   void initState() {
-    Showcodes = widget.codes;
+    if(widget.codes.VolunteerCode != "") Showcodes = widget.codes;
+    else Showcodes = widget.CODES;
+    time =  new Timer.periodic(Duration(milliseconds: 200),(Timer t) => setState((){}));
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    time.cancel();
+    super.dispose();
   }
 
   @override

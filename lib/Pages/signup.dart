@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groundlia/Pages/Api/download.dart';
+import 'package:groundlia/Pages/Extra/loading.dart';
+import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 
 SData data2 = SData();
 getCodes codes = getCodes();
 
 class signup extends StatefulWidget {
+  LData data1;
+  signup(this.data1);
+
   @override
   _signupState createState() => _signupState();
 }
 
 class _signupState extends State<signup> {
+
+  bool isloading = false;
 
   Widget Input(String symbol, String hint){
     return Container(
@@ -62,7 +69,7 @@ class _signupState extends State<signup> {
     return SafeArea(
         child: Scaffold(
 //          resizeToAvoidBottomInset: false,
-          body: Container(
+          body: (!isloading)?Container(
             width: MediaQuery.of(context).size.width,
             color: Colors.grey[900],
             child: Column(
@@ -79,11 +86,16 @@ class _signupState extends State<signup> {
                 GestureDetector(
                   onTap: () async {
 
+                    setState(() {
+                      isloading = true;
+                    });
+
                     download dn = download();
                     if(data2.name != "" && data2.mail != "" && data2.location != "")
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
+                      widget.data1.code = codes.OrganizerCode;
                       print(codes.OrganizerCode);
                       print(codes.VolunteerCode);
                       print(codes.WatcherCode);
@@ -115,7 +127,7 @@ class _signupState extends State<signup> {
                 )
               ],
             ),
-          ),
+          ):loading_container(),
         )
     );
   }

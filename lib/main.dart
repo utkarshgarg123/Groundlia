@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/volunteer/CricketScoreBoard.dart';
-import 'package:groundlia/Pages/volunteer/PlayCricket.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
 import 'package:groundlia/Pages/volunteer/SportsSelectionScreen.dart';
 import 'package:groundlia/Pages/done.dart';
 import 'package:groundlia/Pages/login.dart';
 import 'package:groundlia/Pages/signup.dart';
 import 'package:groundlia/Pages/startevent.dart';
+import 'package:groundlia/Pages/volunteer/badminton/badminton_new_game.dart';
+import 'package:groundlia/Pages/volunteer/badminton/badminton_update_score.dart';
+import 'package:groundlia/Pages/volunteer/basketball/Basketball_update_score.dart';
+import 'package:groundlia/Pages/volunteer/basketball/basketball_new_game.dart';
+import 'package:groundlia/Pages/volunteer/cricket/cricket_new_game.dart';
+import 'package:groundlia/Pages/volunteer/cricket/cricket_update_score.dart';
 import 'package:groundlia/Pages/watcher/watchbadminton.dart';
 import 'package:groundlia/Pages/watcher/watchbasketball.dart';
 import 'package:groundlia/Pages/watcher/watchcricket.dart';
@@ -16,9 +20,8 @@ void main(){
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home:
-//        SelectSport(),
-     CricketScoreBoard(),
-    // StartTheApp(),
+        StartTheApp(),
+//     CricketScoreBoard(),
      routes: routes,
   ));
 }
@@ -26,18 +29,20 @@ void main(){
 var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
-  "/signup" : (BuildContext context) => signup(),
+  "/signup" : (BuildContext context) => signup(data1),
   "/done" : (BuildContext context) => Done(data1),
-  "/startevent" : (BuildContext context) => Startevent(data2,codes),
-  "/playCricket" : (BuildContext context) => PlayCricket(),
+  "/startevent" : (BuildContext context) => Startevent(data2,codes,CODES),
   "/selectsport" : (BuildContext context) => SelectSport(),
   "/watchwhich" : (BuildContext context) => watchwhich(data1),
-  "/watchcricket" : (BuildContext context) => watchcricket(data1,CricketScore),
-  "/watchbasketball" : (BuildContext context) => watchbasketball(data1,BasketBallScore),
-  "/watchbadminton" : (BuildContext context) => watchbadminton(data1,BadmintonScore),
-  "/cricketEdit" : (BuildContext context) => CricketScoreBoard(),
-//  "/BadmintonEdit" : (BuildContext context) => BadmintonScoreBoard(),
-//  "/BasketballEdit" : (BuildContext context) => BasketballScoreBoard(),
+  "/watchcricket" : (BuildContext context) => watchcricket(data1,cricketScore),
+  "/watchbasketball" : (BuildContext context) => watchbasketball(data1,basketballScore),
+  "/watchbadminton" : (BuildContext context) => watchbadminton(data1,badminonScore),
+  "/newbadminton": (BuildContext context) => BadmintonNewGame(data1,data2),
+  "/updatebadminton": (BuildContext context)=> BadmintonUpdateScore(data1,data2),
+  "/newbasketball": (BuildContext context) => BasketballNewGame(data1,data2),
+  "/updatebasketball": (BuildContext context)=> BasketballUpdateScore(data1,data2),
+  "/newcricket": (BuildContext context) => CricketNewGame(data1,data2),
+  "/updatecricket": (BuildContext context)=> CricketUpdateScore(data1,data2),
 };
 
 class StartTheApp extends StatefulWidget {

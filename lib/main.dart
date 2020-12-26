@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groundlia/Pages/volunteer/CricketScoreBoard.dart';
-import 'package:groundlia/Pages/volunteer/PlayCricket.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
 import 'package:groundlia/Pages/volunteer/SportsSelectionScreen.dart';
 import 'package:groundlia/Pages/done.dart';
@@ -33,9 +31,7 @@ var routes = <String,WidgetBuilder>{
   "/login": (BuildContext context) => login(),
   "/signup" : (BuildContext context) => signup(data1),
   "/done" : (BuildContext context) => Done(data1),
-  "/cricketedit" : (BuildContext context) => CricketScoreBoard(),
   "/startevent" : (BuildContext context) => Startevent(data2,codes,CODES),
-  "/playCricket" : (BuildContext context) => PlayCricket(file),
   "/selectsport" : (BuildContext context) => SelectSport(),
   "/watchwhich" : (BuildContext context) => watchwhich(data1),
   "/watchcricket" : (BuildContext context) => watchcricket(data1,cricketScore),

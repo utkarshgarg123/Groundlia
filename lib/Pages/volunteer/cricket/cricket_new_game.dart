@@ -219,6 +219,7 @@ class _CricketNewGameState extends State<CricketNewGame> {
                     ),
                   ],
                 ),
+                SizedBox(height: 10.0,),
                 GestureDetector(
                   onTap: () async {
                     upload up = new upload();

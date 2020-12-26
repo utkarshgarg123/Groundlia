@@ -187,7 +187,7 @@ class _ShowScoreState extends State<ShowScore> {
             await sv.readfile().then((value) {
               up.endcricket(value["OrganizerCode"]);
               Navigator.of(context).pop(true);
-              Navigator.pushNamed(context, "updatecricket");
+              Navigator.pushNamed(context, "/updatecricket");
             });
           }
           else if (text == "Wide") {
@@ -485,7 +485,7 @@ class _ShowScoreState extends State<ShowScore> {
                 },
                 child: Container(
                   margin: EdgeInsets.only(left: 20.0),
-                  padding: EdgeInsets.all(5.0),
+                  padding: EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     borderRadius: borderRadius(10.0),
                     color: Colors.greenAccent[400],
@@ -496,7 +496,7 @@ class _ShowScoreState extends State<ShowScore> {
             ],
           ),
         ):Container(),
-
+        SizedBox(height: 20.0,),
         Specialruns("Game Over", Colors.red,team),
       ],
     );

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Extra/loading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:groundlia/Pages/Extra/loading_container.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
@@ -20,14 +21,6 @@ class Relogin extends StatefulWidget {
 class _ReloginState extends State<Relogin> {
 
   var random = new Random();
-  void showfinalSnackbar(BuildContext context) {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text('No Credentials found'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
 
   @override
   void initState() {
@@ -63,7 +56,10 @@ class _ReloginState extends State<Relogin> {
           });
         }
         else{
-          showfinalSnackbar(context);
+          Fluttertoast.showToast(
+              msg: "Error in login\nor the login credentials are wrong",
+              backgroundColor: Colors.black,
+              textColor: Colors.white);
           Navigator.of(context).pop(true);
         }
       });

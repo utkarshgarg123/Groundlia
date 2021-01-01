@@ -113,7 +113,7 @@ class _signupState extends State<signup> {
                     padding: EdgeInsets.all(10.0),
                     margin: EdgeInsets.only(top: 20.0),
                     decoration: BoxDecoration(
-                        color: Colors.lightGreen[300],
+                        color: Colors.lightGreen[400],
                         borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
                     child: Text("Start the Event", style: TextStyle(

@@ -58,7 +58,6 @@ class saving{
     try{
       final file = await adminfile();
       String tojson = await jsonEncode(name);
-//      print("tojson: $tojson");
       await file.writeAsString(tojson);
     }catch(e){
       print("errorwritting: #e");
@@ -71,10 +70,47 @@ class saving{
       String fromjson;
       await file.readAsString().then((value) => fromjson = value);
       Map<dynamic, dynamic> datastored = Map<dynamic, dynamic>.from(jsonDecode(fromjson));
-//      print("fromjson:" + datastored["name"]);
       return datastored;
     } catch (e) {
       Map m  = {};
+      print("error: $e");
+      return m;
+    }
+  }
+}
+
+class relogin{
+  Future<String> get file_directory async{
+    var dir = await getExternalStorageDirectory();
+    return dir.path;
+  }
+
+  Future<File> loginfile() async{
+    final String file_name = "logincredentials";
+    final path = await file_directory;
+    return File("$path/$file_name.txt");
+  }
+
+  writefile(String name) async{
+    try{
+      final file = await loginfile();
+      String tojson = await jsonEncode(name);
+      await file.writeAsString(tojson);
+    }catch(e){
+      print("errorwritting: #e");
+    }
+  }
+
+  Future<String> readfile() async {
+    try {
+      final file = await loginfile();
+      String fromjson;
+      await file.readAsString().then((value) => fromjson = value);
+      String datastored = jsonDecode(fromjson);
+      print(datastored);
+      return datastored;
+    } catch (e) {
+      String m = "";
       print("error: $e");
       return m;
     }

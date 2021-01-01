@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/Extra/previous_login.dart';
 import 'package:groundlia/Pages/SplashScreen.dart';
 import 'package:groundlia/Pages/volunteer/SportsSelectionScreen.dart';
 import 'package:groundlia/Pages/done.dart';
@@ -29,6 +30,7 @@ void main(){
 var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
+  "/relogin": (BuildContext context) => Relogin(data1),
   "/signup" : (BuildContext context) => signup(data1),
   "/done" : (BuildContext context) => Done(data1),
   "/startevent" : (BuildContext context) => Startevent(data2,codes,CODES),

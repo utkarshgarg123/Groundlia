@@ -94,7 +94,7 @@ class _SelectSportState extends State<SelectSport> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 10.0),
+              padding: EdgeInsets.only(left: 8.0),
               child: Icon(
                 icon,
                 color: Colors.white,
@@ -102,7 +102,7 @@ class _SelectSportState extends State<SelectSport> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20.0),
+              padding: EdgeInsets.only(left: 20.0,right: 10.0),
               child: Text(name,
                 style: TextStyle(
                     color: Colors.white,
@@ -129,10 +129,10 @@ class _SelectSportState extends State<SelectSport> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Heading("Editor Panel",context),
-                Options(Icons.sports_cricket_outlined, "Cricket",context,45),
-                Options(Icons.sports_tennis_outlined, "Badminton",context,45),
-                Options(Icons.sports_basketball_outlined, "Basketball",context,45),
-                Options(Icons.watch_later, "Watch Ongoing game\n(If Any)",context,25),
+                Options(Icons.sports_cricket_outlined, "Cricket",context,40),
+                Options(Icons.sports_tennis_outlined, "Badminton",context,40),
+                Options(Icons.sports_basketball_outlined, "Basketball",context,40),
+                Options(Icons.watch_later, "Watch Ongoing game",context,20),
               ]
           ),
         ),

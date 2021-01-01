@@ -151,6 +151,7 @@ Widget Indicator(double width,String name){
   return Container(
     width: width-50,
     margin: EdgeInsets.only(top: 10.0),
+    padding: EdgeInsets.only(left: 5.0,right: 5.0),
     decoration: BoxDecoration(
       color: Colors.blue,
       borderRadius: BorderRadius.all(Radius.circular(20.0)),

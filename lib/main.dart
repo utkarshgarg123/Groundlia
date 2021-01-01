@@ -30,7 +30,7 @@ void main(){
 var routes = <String,WidgetBuilder>{
   "/splash": (BuildContext context) => StartTheApp(),
   "/login": (BuildContext context) => login(),
-  "/relogin": (BuildContext context) => Relogin(data1),
+  "/relogin": (BuildContext context) => Relogin(data1,CODES),
   "/signup" : (BuildContext context) => signup(data1),
   "/done" : (BuildContext context) => Done(data1),
   "/startevent" : (BuildContext context) => Startevent(data2,codes,CODES),

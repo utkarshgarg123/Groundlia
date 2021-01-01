@@ -9,7 +9,8 @@ import 'package:groundlia/Pages/util/widget.dart';
 
 class Relogin extends StatefulWidget {
   LData data;
-  Relogin(this.data);
+  getCodes codes;
+  Relogin(this.data, this.codes);
 
 
   @override
@@ -38,6 +39,9 @@ class _ReloginState extends State<Relogin> {
           sv.readfile().then((value) {
             widget.data.Authorisation = "Organizer";
             widget.data.code = value["OrganizerCode"];
+            widget.codes.OrganizerCode = value["OrganizerCode"];
+            widget.codes.VolunteerCode = value["VolunteerCode"];
+            widget.codes.WatcherCode = value["WatcherCode"];
             Navigator.of(context).pop(true);
             Navigator.pushNamed(context, "/startevent");
           });

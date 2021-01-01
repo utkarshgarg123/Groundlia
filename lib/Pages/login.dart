@@ -66,6 +66,9 @@ class _loginState extends State<login> {
     return GestureDetector(
       onTap: () async {
         if(name == "Done") {
+          setState(() {
+            isloading = true;
+          });
           upload up = upload();
           if (data1.name != "" && data1.code != "")
             data1.Authorisation = await up.IsAuthorized(data1);
@@ -76,9 +79,6 @@ class _loginState extends State<login> {
           ) {
             relogin login = relogin();
             await login.writefile(data1.Authorisation);
-            setState(() {
-              isloading = true;
-            });
             Navigator.of(context).pop(true);
             Navigator.pushNamed(context, "/done");
           }
@@ -87,6 +87,9 @@ class _loginState extends State<login> {
                 msg: "Error in login\nor the login credentials are wrong",
                 backgroundColor: Colors.black,
                 textColor: Colors.white);
+            setState(() {
+              isloading = false;
+            });
           }
         }
         else if(name == "Signup As Organizer"){
@@ -131,13 +134,13 @@ class _loginState extends State<login> {
                     Input("user", "Enter Name"),
                     Input("key", "Access code"),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        button("Previous login"),
                         button("Done"),
-                        button("Signup As Organizer"),
                       ],
                     ),
-                    button("Previous login"),
+                    button("Signup As Organizer"),
                   ],
                 ),
               ),

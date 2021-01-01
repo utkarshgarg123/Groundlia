@@ -85,15 +85,14 @@ class _signupState extends State<signup> {
                 Input("location", "Enter location"),
                 GestureDetector(
                   onTap: () async {
-
+                    setState(() {
+                      isloading = true;
+                    });
                     download dn = download();
                     if(data2.name != "" && data2.mail != "" && data2.location != "")
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
-                      setState(() {
-                        isloading = true;
-                      });
                       widget.data1.code = codes.OrganizerCode;
                       print(codes.OrganizerCode);
                       print(codes.VolunteerCode);
@@ -107,6 +106,9 @@ class _signupState extends State<signup> {
                           msg: "Error in signup or\nsignup Credentials are wrong",
                           backgroundColor: Colors.black,
                           textColor: Colors.white);
+                      setState(() {
+                        isloading = false;
+                      });
                     }
                   },
                   child: Container(

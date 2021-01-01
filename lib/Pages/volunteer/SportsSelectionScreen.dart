@@ -88,6 +88,7 @@ class _SelectSportState extends State<SelectSport> {
       },
       child:Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.only(top: 4.0, bottom: 4.0),
         decoration: BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -132,8 +133,8 @@ class _SelectSportState extends State<SelectSport> {
               children: [
                 Heading("Editor Panel",context),
                 Options(Icons.sports_cricket_outlined, "Cricket",context,45),
-                Options(Icons.sports_basketball_outlined, "Basketball",context,45),
                 Options(Icons.sports_tennis_outlined, "Badminton",context,45),
+                Options(Icons.sports_basketball_outlined, "Basketball",context,45),
                 Options(Icons.watch_later, "Watch Ongoing game\n(If Any)",context,25),
               ]
           ),

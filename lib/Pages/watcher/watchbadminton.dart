@@ -26,7 +26,7 @@ class _watchbadmintonState extends State<watchbadminton> {
   bool isloading = true;
   @override
   void initState(){
-    time = new Timer.periodic(Duration(seconds: 5), (Timer t) => Update());
+    time = new Timer.periodic(Duration(seconds: 2), (Timer t) => Update());
   print(widget.Score.data.dataNew);
     super.initState();
   }
@@ -71,15 +71,18 @@ class _watchbadmintonState extends State<watchbadminton> {
                   margin: EdgeInsets.only(top: 10.0),
                   width: MediaQuery.of(context).size.width-40.0,
                   height: MediaQuery.of(context).size.height-270,
-                  color: Colors.blue,
-                  child: Center(child: SingleChildScrollView(child: BasketballEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+                  child: Center(child: SingleChildScrollView(child: BadmintonEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
                 ),
                 GestureDetector(
                   onTap: ()async {
                     await Update();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(5.0),
+                    padding: EdgeInsets.only(left: 10.0,right: 10.0,top: 5.0,bottom: 5.0),
                     decoration: BoxDecoration(
                       color: Colors.greenAccent[400],
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),

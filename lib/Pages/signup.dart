@@ -24,7 +24,7 @@ class _signupState extends State<signup> {
     return Container(
       margin: EdgeInsets.only(top: 30.0),
       width: MediaQuery.of(context).size.width - 100,
-      height: 50.0,
+      padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(20))
@@ -86,15 +86,14 @@ class _signupState extends State<signup> {
                 GestureDetector(
                   onTap: () async {
 
-                    setState(() {
-                      isloading = true;
-                    });
-
                     download dn = download();
                     if(data2.name != "" && data2.mail != "" && data2.location != "")
                     codes = await dn.GetAllCodes(data2);
 
                     if(codes.OrganizerCode != "") {
+                      setState(() {
+                        isloading = true;
+                      });
                       widget.data1.code = codes.OrganizerCode;
                       print(codes.OrganizerCode);
                       print(codes.VolunteerCode);
@@ -111,18 +110,17 @@ class _signupState extends State<signup> {
                     }
                   },
                   child: Container(
-                    height: 45.0,
-                    width: 150.0,
+                    padding: EdgeInsets.all(10.0),
                     margin: EdgeInsets.only(top: 20.0),
                     decoration: BoxDecoration(
                         color: Colors.lightGreen[300],
                         borderRadius: BorderRadius.all(Radius.circular(10))
                     ),
-                    child: Center(child: Text("Start the Event", style: TextStyle(
+                    child: Text("Start the Event", style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w700,
                       fontFamily: "mainfont",
-                    ),),),
+                    ),),
                   ),
                 )
               ],

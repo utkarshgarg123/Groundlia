@@ -28,8 +28,8 @@ Widget Heading(String heading,BuildContext context){
     children: [
       GestureDetector(
         onTap: (){
-          Navigator.of(context).pop(true);
-          Navigator.pushNamed(context, "/login");
+//          Navigator.of(context).pop(true);
+//          Navigator.pushNamed(context, "/login");
         },
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(80.0)),
@@ -92,7 +92,7 @@ Widget showCodes(String code,String write,double width, BuildContext context){
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
     ),
     margin: EdgeInsets.only(top: 20.0),
-    height: 100.0,
+    padding: EdgeInsets.all(10.0),
     width: width - 50.0,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -152,18 +152,21 @@ Widget Indicator(double width,String name){
     width: width-50,
     margin: EdgeInsets.only(top: 10.0),
     decoration: BoxDecoration(
-      color: Colors.red,
+      color: Colors.blue,
       borderRadius: BorderRadius.all(Radius.circular(20.0)),
     ),
-    child: Container(
-      margin: EdgeInsets.all(10.0),
-      child: Center(
-        child: Text(
-          name,
-          maxLines: 1,
-          style: TextStyle(
-            fontFamily: "mainfont",
-            fontSize: 15.0,
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        margin: EdgeInsets.all(10.0),
+        child: Center(
+          child: Text(
+            name,
+            maxLines: 1,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15.0,
+            ),
           ),
         ),
       ),

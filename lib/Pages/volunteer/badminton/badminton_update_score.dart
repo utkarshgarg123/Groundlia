@@ -21,6 +21,7 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
 
   bool isloading = true;
   Timer time;
+  String code;
   BadmintonScore Score = new BadmintonScore();
   final snackbar = SnackBar(
     content: Text("Updating . . ."),
@@ -49,9 +50,10 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
 
   void Update() async{
     download dn = download();
-    if(widget.data1.code == ""){
-      widget.data1.code == widget.data2.OrganizerCode;
-    }
+    saving sv = new saving();
+    await sv.readfile().then((value) async {
+     widget.data1.code = value["OrganizerCode"];
+    });
     await dn.BadmintonScore(widget.data1).then((value) {
       Score.dataelements(value["data"]["Team_A"]["Members"],
           value["data"]["Team_A"]["Score"].toString(),
@@ -289,6 +291,7 @@ class _BadmintonUpdateScoreState extends State<BadmintonUpdateScore> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20.0,),
               ],
             ),
           ),

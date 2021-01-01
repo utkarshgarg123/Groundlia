@@ -44,6 +44,7 @@ class _StarteventState extends State<Startevent> {
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
+                    SizedBox(height: 5.0,),
                     Heading("Event Codes",context),
                     showCodes(Showcodes.OrganizerCode.toString().toString(),"Organizers:- " + Showcodes.OrganizerCode.toString().toString(), MediaQuery.of(context).size.width,context),
                     showCodes(Showcodes.VolunteerCode.toString().toString(),"Volunteers:- " + Showcodes.VolunteerCode.toString().toString(), MediaQuery.of(context).size.width,context),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/Data.dart';
@@ -87,7 +88,7 @@ class _BasketballNewGameState extends State<BasketballNewGame> {
                               Team2.removeLast();
                               if(players < 1){players = 1;
                               Team1.add("");
-                              Team2.add("");};
+                              Team2.add("");}
                             });
                           },
                           child: Container(
@@ -151,14 +152,10 @@ class _BasketballNewGameState extends State<BasketballNewGame> {
                 GestureDetector(
                   onTap: () async {
                     upload up = new upload();
-                    if (widget.data1.code != "") {
-                      await up.createbasketball(
-                          widget.data1.code, players, Team1, Team2);
-                    }
-                    else {
-                      await up.createbasketball(
-                          widget.data2.OrganizerCode, players, Team1, Team2);
-                    }
+                    saving sv = new saving();
+                    await sv.readfile().then((value) async {
+                      await up.createbasketball(value["OrganizerCode"],players, Team1, Team2);
+                    });
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/updatebasketball");
                     print("team1: " + Team1.toString());
@@ -168,13 +165,13 @@ class _BasketballNewGameState extends State<BasketballNewGame> {
                     decoration: BoxDecoration(
                       borderRadius: borderRadius(25.0),
                       color: Colors.greenAccent[400],),
-                    height: 60.0,
-                    width: 100.0,
-                    child: Center(child: Text("done",
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("done",
                       style: TextStyle(fontSize: 35.0, fontWeight: FontWeight
-                          .bold, fontFamily: "mainfont"),)),
+                          .bold, fontFamily: "mainfont"),),
                   ),
-                )
+                ),
+                SizedBox(height: 10.0,),
               ],
             ),
           ),

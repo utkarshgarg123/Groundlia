@@ -38,7 +38,26 @@ class _watchwhichState extends State<watchwhich> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
-                  height: 50.0,
+                  padding: EdgeInsets.all(5.0),
+                  width: MediaQuery.of(context).size.width - 50,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(Icons.watch_later_outlined,color: Colors.white,size: 35.0,),
+                      Text("What to watch" ,style: TextStyle(
+                        fontFamily: "mainfont",
+                        fontSize: 35.0,
+                      ),),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  padding: EdgeInsets.all(5.0),
                   width: MediaQuery.of(context).size.width - 50,
                   decoration: BoxDecoration(
                     color: Colors.red,
@@ -80,7 +99,7 @@ class _watchwhichState extends State<watchwhich> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.0),
-                    height: 50.0,
+                    padding: EdgeInsets.all(5.0),
                     width: MediaQuery.of(context).size.width - 100,
                     decoration: BoxDecoration(
                       color: Colors.greenAccent[400],
@@ -117,7 +136,7 @@ class _watchwhichState extends State<watchwhich> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.0),
-                    height: 50.0,
+                    padding: EdgeInsets.all(5.0),
                     width: MediaQuery.of(context).size.width - 100,
                     decoration: BoxDecoration(
                       color: Colors.greenAccent[400],
@@ -154,7 +173,7 @@ class _watchwhichState extends State<watchwhich> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.0),
-                    height: 50.0,
+                    padding: EdgeInsets.all(5.0),
                     width: MediaQuery.of(context).size.width - 100,
                     decoration: BoxDecoration(
                       color: Colors.greenAccent[400],
@@ -173,7 +192,7 @@ class _watchwhichState extends State<watchwhich> {
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.0),
-                    height: 50.0,
+                    padding: EdgeInsets.all(5.0),
                     width: MediaQuery.of(context).size.width - 50,
                     decoration: BoxDecoration(
                       color: Colors.blue,

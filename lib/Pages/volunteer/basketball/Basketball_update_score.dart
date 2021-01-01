@@ -49,9 +49,10 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
 
   void Update() async{
     download dn = download();
-    if(widget.data1.code == ""){
-      widget.data1.code == widget.data2.OrganizerCode;
-    }
+    saving sv = new saving();
+    await sv.readfile().then((value) async {
+      widget.data1.code = value["OrganizerCode"];
+    });
     await dn.BasketballScore(widget.data1).then((value) {
       Score.dataelements(value["data"]["Team_A"]["Members"],
           value["data"]["Team_A"]["Score"].toString(),
@@ -96,7 +97,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                           constraints: BoxConstraints(maxWidth: 170),
                           child: Center(
                             child: Text(
-                              Score.data.teamA.members[i],
+                              Score.data.teamA.members[i] + ",",
                               style: TextStyle(
                                 fontFamily: "mainfont",
                                 fontSize: 15.0,
@@ -179,7 +180,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                           constraints: BoxConstraints(maxWidth: 170),
                           child: Center(
                             child: Text(
-                              Score.data.teamB.members[i],
+                              Score.data.teamB.members[i] + ",",
                               style: TextStyle(
                                 fontFamily: "mainfont",
                                 fontSize: 15.0,
@@ -277,6 +278,7 @@ class _BasketballUpdateScoreState extends State<BasketballUpdateScore> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20.0,),
               ],
             ),
           ),

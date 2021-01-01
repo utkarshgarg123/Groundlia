@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/Data.dart';
@@ -224,14 +225,10 @@ class _CricketNewGameState extends State<CricketNewGame> {
                   onTap: () async {
                     upload up = new upload();
                     print(mode1 + mode2);
-                    if (widget.data1.code != "") {
-                      await up.createcricket(
-                          widget.data1.code, Team1, Team2, mode1, mode2);
-                    }
-                    else {
-                      await up.createcricket(
-                          widget.data2.OrganizerCode, Team1, Team2, mode1, mode2);
-                    }
+                    saving sv = new saving();
+                    await sv.readfile().then((value) async {
+                      await up.createcricket(value["OrganizerCode"], Team1, Team2, mode1, mode2);
+                    });
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/updatecricket");
                     print("team1: " + Team1.toString());
@@ -241,13 +238,13 @@ class _CricketNewGameState extends State<CricketNewGame> {
                     decoration: BoxDecoration(
                       borderRadius: borderRadius(25.0),
                       color: Colors.greenAccent[400],),
-                    height: 60.0,
-                    width: 100.0,
-                    child: Center(child: Text("done",
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("done",
                       style: TextStyle(fontSize: 35.0, fontWeight: FontWeight
-                          .bold, fontFamily: "mainfont"),)),
+                          .bold, fontFamily: "mainfont"),),
                   ),
-                )
+                ),
+                SizedBox(height: 10.0,),
               ],
             ),
           ),

@@ -26,7 +26,7 @@ class _loginState extends State<login> {
           borderRadius: BorderRadius.all(Radius.circular(20))
       ),
       width: MediaQuery.of(context).size.width - 100,
-      height: 50.0,
+      padding: EdgeInsets.all(5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,9 +84,6 @@ class _loginState extends State<login> {
                       children: [
                         GestureDetector(
                           onTap: () async {
-                            setState(() {
-                              isloading = true;
-                            });
                             upload up = upload();
                             if(data1.name != "" && data1.code != "")
                             data1.Authorisation = await up.IsAuthorized(data1);
@@ -95,6 +92,9 @@ class _loginState extends State<login> {
                                 data1.Authorisation == "Organiser" ||
                                 data1.Authorisation == "Volunteer"
                             ){
+                              setState(() {
+                                isloading = true;
+                              });
                             Navigator.of(context).pop(true);
                             Navigator.pushNamed(context, "/done");
                             }
@@ -106,9 +106,8 @@ class _loginState extends State<login> {
                             }
                           },
                           child: Container(
-                            height: 45.0,
-                            width: 70.0,
                             margin: EdgeInsets.only(top: 20.0),
+                            padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                                 color: Colors.lightGreen[300],
                                 borderRadius: BorderRadius.all(Radius.circular(10))
@@ -125,8 +124,7 @@ class _loginState extends State<login> {
                             Navigator.pushNamed(context, "/signup");
                           },
                           child: Container(
-                            height: 45.0,
-                            width: MediaQuery.of(context).size.width - 140,
+                            padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.only(top: 20.0),
                             decoration: BoxDecoration(
                                 color: Colors.lightGreen[300],

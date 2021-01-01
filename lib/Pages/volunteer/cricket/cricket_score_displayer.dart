@@ -139,7 +139,7 @@ class _ShowScoreState extends State<ShowScore> {
       },
       child: Container(
         margin: EdgeInsets.all(5.0),
-        padding: EdgeInsets.all(5.0),
+        padding: EdgeInsets.only(top: 1.5,bottom: 1.5,left: 10.0,right: 10.0),
         decoration: BoxDecoration(
           borderRadius: borderRadius(10.0),
           color: color,
@@ -318,17 +318,23 @@ class _ShowScoreState extends State<ShowScore> {
               ),
             ),
             SizedBox(height: 25.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                runs(0, Colors.red,team),
-                runs(1, Colors.greenAccent[400],team),
-                runs(2, Colors.greenAccent[400],team),
-                runs(3, Colors.red,team),
-                runs(4, Colors.greenAccent[400],team),
-                runs(5, Colors.red,team),
-                runs(6, Colors.greenAccent[400],team),
-              ],
+            Container(
+              width: MediaQuery.of(context).size.width - 20,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    runs(0, Colors.red,team),
+                    runs(1, Colors.greenAccent[400],team),
+                    runs(2, Colors.greenAccent[400],team),
+                    runs(3, Colors.red,team),
+                    runs(4, Colors.greenAccent[400],team),
+                    runs(5, Colors.red,team),
+                    runs(6, Colors.greenAccent[400],team),
+                  ],
+                ),
+              ),
             ),
             SizedBox(height: 20.0,),
             Row(
@@ -498,6 +504,7 @@ class _ShowScoreState extends State<ShowScore> {
         ):Container(),
         SizedBox(height: 20.0,),
         Specialruns("Game Over", Colors.red,team),
+        SizedBox(height: 20.0,),
       ],
     );
   }

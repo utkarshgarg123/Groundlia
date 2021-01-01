@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Api/upload.dart';
 import 'package:groundlia/Pages/util/Constants.dart';
 import 'package:groundlia/Pages/util/Data.dart';
@@ -58,8 +59,7 @@ class _BadmintonNewGameState extends State<BadmintonNewGame> {
                         });
                       },
                       child: Container(
-                        width: 30.0,
-                        height: 30.0,
+                        padding: EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
                         margin: EdgeInsets.only(left: 10.0),
                         decoration: BoxDecoration(
                           borderRadius: borderRadius(10.0),
@@ -80,8 +80,7 @@ class _BadmintonNewGameState extends State<BadmintonNewGame> {
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: 10.0),
-                        width: 30.0,
-                        height: 30.0,
+                        padding: EdgeInsets.only(top: 5.0,bottom: 5.0,left: 10.0,right: 10.0),
                         decoration: BoxDecoration(
                           borderRadius: borderRadius(10.0),
                           color: (players == 2)?Colors.greenAccent[400]:Colors.red,
@@ -151,11 +150,10 @@ class _BadmintonNewGameState extends State<BadmintonNewGame> {
                       team2.add(team22);
                     }
                     upload up = new upload();
-                    if(widget.data1.code != ""){
-                    await up.createbadminton(widget.data1.code,players, team1, team2);}
-                    else{
-                      await up.createbadminton(widget.data2.OrganizerCode,players, team1, team2);
-                    }
+                    saving sv = new saving();
+                    await sv.readfile().then((value) async {
+                      await up.createbadminton(value["OrganizerCode"],players, team1, team2);
+                    });
                     Navigator.of(context).pop(true);
                     Navigator.pushNamed(context, "/updatebadminton");
                     print("team1: " + team1.toString());
@@ -165,9 +163,8 @@ class _BadmintonNewGameState extends State<BadmintonNewGame> {
                     decoration: BoxDecoration(
                       borderRadius: borderRadius(25.0),
                       color: Colors.greenAccent[400],),
-                    height: 60.0,
-                    width: 100.0,
-                    child: Center(child: Text("done",style: TextStyle(fontSize: 35.0,fontWeight: FontWeight.bold,fontFamily: "mainfont"),)),
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("done",style: TextStyle(fontSize: 35.0,fontWeight: FontWeight.bold,fontFamily: "mainfont"),),
                   ),
                 )
               ],

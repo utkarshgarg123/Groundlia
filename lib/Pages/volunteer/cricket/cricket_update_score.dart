@@ -50,9 +50,10 @@ class _CricketUpdateScoreState extends State<CricketUpdateScore> {
 
   void Update() async{
     download dn = download();
-    if(widget.data1.code == ""){
-      widget.data1.code == widget.data2.OrganizerCode;
-    }
+    saving sv = new saving();
+    await sv.readfile().then((value) async {
+      widget.data1.code = value["OrganizerCode"];
+    });
     await dn.CricketScore(widget.data1).then((value) {
       Score.dataelements(value["data"]["Team_A"]["Members"],
           value["data"]["Team_A"]["Runs"].toString(),

@@ -25,7 +25,7 @@ class _watchcricketState extends State<watchcricket> {
   bool isloading = true;
   @override
   void initState(){
-    time = new Timer.periodic(Duration(seconds: 5), (Timer t) => Update());
+    time = new Timer.periodic(Duration(seconds: 2), (Timer t) => Update());
     super.initState();
   }
 
@@ -74,7 +74,10 @@ class _watchcricketState extends State<watchcricket> {
                   margin: EdgeInsets.only(top: 10.0),
                   width: MediaQuery.of(context).size.width-40.0,
                   height: MediaQuery.of(context).size.height-270,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
                   child: Center(child: SingleChildScrollView(child: CricketEachGameScore(widget.Score, MediaQuery.of(context).size.width)))
               ),
               GestureDetector(
@@ -85,7 +88,7 @@ class _watchcricketState extends State<watchcricket> {
                   await Update();
                 },
                 child: Container(
-                  padding: EdgeInsets.all(5.0),
+                  padding: EdgeInsets.only(left: 10.0,right: 10.0,top: 5.0,bottom: 5.0),
                   decoration: BoxDecoration(
                     color: Colors.greenAccent[400],
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),

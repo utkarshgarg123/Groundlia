@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:groundlia/Pages/Api/download.dart';
 import 'package:groundlia/Pages/Api/storing_locally.dart';
 import 'package:groundlia/Pages/Extra/loading_container.dart';
-import 'package:groundlia/Pages/player_data/Admin_file.dart';
 import 'package:groundlia/Pages/util/Data.dart';
 import 'package:groundlia/Pages/util/widget.dart';
-
-admin_file file = new admin_file();
 
 class SelectSport extends StatefulWidget {
 
